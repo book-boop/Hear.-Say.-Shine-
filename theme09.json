@@ -1,0 +1,49 @@
+{
+  "themeId": 9,
+  "themeTitle": "Endings, Syllables, Stress",
+  "partA": [
+    { "id": 1, "question": "dishes", "options": ["/s/", "/z/", "/ɪz/"], "answer": "/ɪz/" },
+    { "id": 2, "question": "cups", "options": ["/s/", "/z/", "/ɪz/"], "answer": "/s/" },
+    { "id": 3, "question": "pears", "options": ["/s/", "/z/", "/ɪz/"], "answer": "/z/" },
+    { "id": 4, "question": "played", "options": ["/t/", "/d/", "/ɪd/"], "answer": "/d/" },
+    { "id": 5, "question": "shouted", "options": ["/t/", "/d/", "/ɪd/"], "answer": "/ɪd/" },
+    { "id": 6, "question": "washed", "options": ["/t/", "/d/", "/ɪd/"], "answer": "/t/" },
+    { "id": 7, "question": "spoons", "options": ["/s/", "/z/", "/ɪz/"], "answer": "/z/" },
+    { "id": 8, "question": "painted", "options": ["/t/", "/d/", "/ɪd/"], "answer": "/ɪd/" },
+    { "id": 9, "question": "forks", "options": ["/s/", "/z/", "/ɪz/"], "answer": "/s/" },
+    { "id": 10, "question": "dropped", "options": ["/t/", "/d/", "/ɪd/"], "answer": "/t/" },
+    { "id": 11, "question": "yellow", "options": ["1 syllable", "2 syllables", "3 syllables"], "answer": "2 syllables" },
+    { "id": 12, "question": "banana", "options": ["1 syllable", "2 syllables", "3 syllables"], "answer": "3 syllables" },
+    { "id": 13, "question": "hat", "options": ["1 syllable", "2 syllables", "3 syllables"], "answer": "1 syllable" },
+    { "id": 14, "question": "elephant", "options": ["1 syllable", "2 syllables", "3 syllables"], "answer": "3 syllables" },
+    { "id": 15, "question": "enjoy", "options": ["1 syllable", "2 syllables", "3 syllables"], "answer": "2 syllables" }
+  ],
+  "partB": [
+    { "id": 1, "prompt": "sandwi _ _ _", "hint": "三明治/複數", "answer": "ches", "fullWord": "sandwiches" },
+    { "id": 2, "prompt": "smi _ _ _", "hint": "微笑/過去式", "answer": "led", "fullWord": "smiled" },
+    { "id": 3, "prompt": "cup _", "hint": "杯子/複數", "answer": "s", "fullWord": "cups" },
+    { "id": 4, "prompt": "wash _ _", "hint": "洗/過去式", "answer": "ed", "fullWord": "washed" },
+    { "id": 5, "prompt": "paint _ _", "hint": "繪畫/過去式", "answer": "ed", "fullWord": "painted" },
+    { "id": 6, "prompt": "dish _ _", "hint": "盤子/複數", "answer": "es", "fullWord": "dishes" },
+    { "id": 7, "prompt": "play _ _", "hint": "玩/過去式", "answer": "ed", "fullWord": "played" },
+    { "id": 8, "prompt": "pear _", "hint": "西洋梨/複數", "answer": "s", "fullWord": "pears" },
+    { "id": 9, "prompt": "drop _ _ _", "hint": "掉落/過去式", "answer": "ped", "fullWord": "dropped" },
+    { "id": 10, "prompt": "shout _ _", "hint": "大叫/過去式", "answer": "ed", "fullWord": "shouted" },
+    { "id": 11, "prompt": "spoon _", "hint": "湯匙/複數", "answer": "s", "fullWord": "spoons" },
+    { "id": 12, "prompt": "fork _", "hint": "叉子/複數", "answer": "s", "fullWord": "forks" }
+  ],
+  "partC": [
+    { "id": 1, "audioScript": "played", "options": ["played", "play"], "answer": "played" },
+    { "id": 2, "audioScript": "washed", "options": ["wash", "washed"], "answer": "washed" },
+    { "id": 3, "audioScript": "painted", "options": ["painted", "paint"], "answer": "painted" },
+    { "id": 4, "audioScript": "cups", "options": ["cup", "cups"], "answer": "cups" },
+    { "id": 5, "audioScript": "spoons", "options": ["spoon", "spoons"], "answer": "spoons" },
+    { "id": 6, "audioScript": "dishes", "options": ["dish", "dishes"], "answer": "dishes" },
+    { "id": 7, "audioScript": "forks", "options": ["fork", "forks"], "answer": "forks" },
+    { "id": 8, "audioScript": "smiled", "options": ["smile", "smiled"], "answer": "smiled" },
+    { "id": 9, "audioScript": "shouted", "options": ["shout", "shouted"], "answer": "shouted" },
+    { "id": 10, "audioScript": "dropped", "options": ["drop", "dropped"], "answer": "dropped" },
+    { "id": 11, "audioScript": "sandwiches", "options": ["sandwich", "sandwiches"], "answer": "sandwiches" },
+    { "id": 12, "audioScript": "pears", "options": ["pear", "pears"], "answer": "pears" }
+  ]
+}
