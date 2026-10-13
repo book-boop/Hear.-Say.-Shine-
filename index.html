@@ -38,13 +38,26 @@
   background-attachment: fixed;
 }
 
-    .app-container {
+   .app-container {
       width: 100%;
       max-width: 820px;
       min-height: 90vh;
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+      /* 採用與背景呼應的半透明漸層磨砂質感 */
+      background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.72) 0%, 
+        rgba(244, 247, 251, 0.6) 100%
+      );
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 24px;
+      /* 半透明高光邊框，界定邊界輪廓 */
+      border: 1.5px solid rgba(255, 255, 255, 0.85);
+      /* 多層複合陰影：內凹柔光 + 懸浮深層投影，營造立體感 */
+      box-shadow: 
+        0 20px 40px -15px rgba(0, 32, 74, 0.12),
+        0 0 0 1px rgba(255, 255, 255, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.9);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -152,17 +165,19 @@
       font-size: 1.25rem;
       font-weight: bold;
       color: #2D3748;
-      background: #FFF;
-      border: 2.5px solid #2D3748;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F7FAFC 100%);
+      border: 2px solid #CBD5E0;
       border-radius: 35px;
       cursor: pointer;
       transition: all 0.2s ease;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     }
     .btn-start:hover { 
       background: #2D3748; 
       color: #FFF; 
+      border-color: #2D3748;
       transform: translateY(-2px); 
+      box-shadow: 0 6px 16px rgba(45, 55, 72, 0.2);
     }
 
     /* 主題目錄 (3x3 圓圈) */
