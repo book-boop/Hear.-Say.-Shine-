@@ -203,7 +203,7 @@
       display: flex; 
       justify-content: space-between; 
       align-items: center; 
-      margin-bottom: 15px; 
+      margin-bottom: 12px; 
     }
     .back-btn { 
       border: none; 
@@ -214,20 +214,21 @@
       font-weight: bold; 
     }
     
+    /* 適用範圍提示框 (圖二資訊) */
     .scope-box {
       width: 100%;
       background: #EBF8FF;
       border-left: 5px solid var(--primary-color);
       border-radius: 6px;
-      padding: 12px 18px;
-      margin-bottom: 15px;
-      font-size: 0.92rem;
+      padding: 10px 16px;
+      margin-bottom: 14px;
+      font-size: 0.9rem;
       line-height: 1.4;
     }
     .scope-title { 
       font-weight: bold; 
       color: #2B6CB0; 
-      margin-bottom: 4px; 
+      margin-bottom: 3px; 
     }
     .scope-detail { 
       color: #4A5568; 
@@ -235,11 +236,27 @@
       white-space: pre-line; 
     }
 
+    /* 題型作答說明 (如圈出母音發音不同等) */
+    .part-instruction {
+      width: 100%;
+      background: #FFFDF5;
+      border: 1.5px solid #F6E05E;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #744210;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
     .part-tabs { 
       display: flex; 
       gap: 10px; 
       width: 100%; 
-      margin-bottom: 20px; 
+      margin-bottom: 15px; 
       border-bottom: 2px solid #EDF2F7; 
       padding-bottom: 8px; 
     }
@@ -265,7 +282,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
     }
 
     .progress-bar-container {
@@ -298,7 +315,7 @@
       background: #FFFFFF;
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
-      padding: 35px 25px;
+      padding: 30px 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
@@ -481,6 +498,12 @@
       <div class="scope-detail" id="scopeDetail">題目範圍載入中...</div>
     </div>
 
+    <!-- 題型作答說明區 (原檔標註之作答指引) -->
+    <div class="part-instruction" id="partInstruction">
+      <span>📌</span>
+      <span id="instructionText">請依指示作答</span>
+    </div>
+
     <!-- Part 切換 -->
     <div class="part-tabs">
       <button class="tab-btn active" onclick="switchPart('partA', this)">Part A</button>
@@ -495,24 +518,121 @@
 </div>
 
 <script>
-  // 9 大主題配置
+  // 9 大主題配置與原檔所有題型說明
   const themeList = [
-    { id: 1, file: "theme01.json", name: "Alphabets & Sounds", fullTheme: "Alphabets and Letter Sounds", scope: "26個字母\nPhonics FUN Book 1 U1-10\nPhonics GO Book 1 U1-8" },
-    { id: 2, file: "theme02.json", name: "Short Vowels", fullTheme: "Short Vowels", scope: "Short Vowels (a, e, i, o, u)\nPhonics FUN Book 1 U13-17\nPhonics GO Book 1 U9-13" },
-    { id: 3, file: "theme03.json", name: "Long Vowels", fullTheme: "Long Vowels", scope: "Long Vowels\nPhonics FUN Book 1 U18-19, Book 2 U1-10\nPhonics GO Book 1 U18-19, Book 2 U1-5" },
-    { id: 4, file: "theme04.json", name: "More Vowels", fullTheme: "More Vowels", scope: "Diphthongs: oi, oy, ou, ow, oo\nVowel Digraphs: au, aw, al\nGlued Sounds: oll, ull\nPhonics FUN Book 2 U12-14\nPhonics GO Book 2 U12-15" },
-    { id: 5, file: "theme05.json", name: "R-Controlled", fullTheme: "R-Controlled Vowels", scope: "ar, or, war, wor, ir, er, ur\nPhonics FUN Book 2 U15-16\nPhonics GO Book 2 U10-11" },
-    { id: 6, file: "theme06.json", name: "Blends", fullTheme: "L, R, S Blends", scope: "Blends\nPhonics FUN Book 2 U17, Book 3 U11-12, 15\nPhonics GO Book 1 U14-17" },
-    { id: 7, file: "theme07.json", name: "Digraphs", fullTheme: "Consonant Digraphs", scope: "sh, ch, tch, th, gh, wh, ph\nPhonics FUN Book 2 U18-19, Book 3 U7-8\nPhonics GO Book 2 U6-9" },
-    { id: 8, file: "theme08.json", name: "Special Consonants", fullTheme: "Special Consonants", scope: "Special Consonants (ck, kn, wr, -mb, -mn, -nd...)\nPhonics FUN Book 3 U8, 9, 13-16\nPhonics GO Book 2 U16-19" },
-    { id: 9, file: "theme09.json", name: "Endings & Stress", fullTheme: "Endings, Syllables, Stress", scope: "-s/-es, -ed, 1~3 syllables\nPhonics FUN Book 3 U17-19" }
+    { 
+      id: 1, 
+      file: "theme01.json", 
+      name: "Alphabets & Sounds", 
+      fullTheme: "Alphabets and Letter Sounds", 
+      scope: "26個字母\nPhonics FUN Book 1 U1-10\nPhonics GO Book 1 U1-8",
+      instructions: {
+        partA: "Part A: 選出與底線發音相同的選項。",
+        partB: "Part B: 根據空格提示，填入正確的字母。",
+        partC: "Part C: 仔細聽發音與單字，選出正確的單字。"
+      }
+    },
+    { 
+      id: 2, 
+      file: "theme02.json", 
+      name: "Short Vowels", 
+      fullTheme: "Short Vowels", 
+      scope: "Short Vowels (a, e, i, o, u)\nPhonics FUN Book 1 U13-17\nPhonics GO Book 1 U9-13",
+      instructions: {
+        partA: "Part A: 圈出母音發音不同的單字（請選出母音發音與其他兩者不同者）。",
+        partB: "Part B: 聽單字，看圖並填入正確的短母音字母。",
+        partC: "Part C: 聽音辨字。"
+      }
+    },
+    { 
+      id: 3, 
+      file: "theme03.json", 
+      name: "Long Vowels", 
+      fullTheme: "Long Vowels", 
+      scope: "Long Vowels\nPhonics FUN Book 1 U18-19, Book 2 U1-10\nPhonics GO Book 1 U18-19, Book 2 U1-5",
+      instructions: {
+        partA: "Part A: 請圈出與題目「母音發音相同」的選項。",
+        partB: "Part B: 填入正確的長母音組合字母（如：a_e, ai, ay, i_e, igh, o_e, oa, ow, u_e, ue, ui, ee, ea）。",
+        partC: "Part C: 聽音辨字。"
+      }
+    },
+    { 
+      id: 4, 
+      file: "theme04.json", 
+      name: "More Vowels", 
+      fullTheme: "More Vowels", 
+      scope: "Diphthongs: oi, oy, ou, ow, oo\nVowel Digraphs: au, aw, al\nGlued Sounds: oll, ull\nPhonics FUN Book 2 U12-14\nPhonics GO Book 2 U12-15",
+      instructions: {
+        partA: "Part A: 圈出母音發音相同的單字。",
+        partB: "Part B: 填入正確的組合字母（如：oi, oy, ou, ow, oo, au, aw, al, oll, ull）。",
+        partC: "Part C: 聽音辨字。"
+      }
+    },
+    { 
+      id: 5, 
+      file: "theme05.json", 
+      name: "R-Controlled", 
+      fullTheme: "R-Controlled Vowels", 
+      scope: "ar, or, war, wor, ir, er, ur\nPhonics FUN Book 2 U15-16\nPhonics GO Book 2 U10-11",
+      instructions: {
+        partA: "Part A: 圈出母音發音相同的單字。",
+        partB: "Part B: 聽單字，看圖並填入正確的母音組合字母（如：ar, or, er, ir, ur）。",
+        partC: "Part C: 聽音辨字。"
+      }
+    },
+    { 
+      id: 6, 
+      file: "theme06.json", 
+      name: "Blends", 
+      fullTheme: "L, R, S Blends", 
+      scope: "Blends\nPhonics FUN Book 2 U17, Book 3 U11-12, 15\nPhonics GO Book 1 U14-17",
+      instructions: {
+        partA: "Part A: 仔細聽，選出該單字正確的子音群（Blend）組合。",
+        partB: "Part B: 根據空格提示，填入正確的子音群組合字母（如：bl, cl, fl, gr, sm, sk 等）。",
+        partC: "Part C: 仔細聽發音與單字，選出正確的單字。"
+      }
+    },
+    { 
+      id: 7, 
+      file: "theme07.json", 
+      name: "Digraphs", 
+      fullTheme: "Consonant Digraphs", 
+      scope: "sh, ch, tch, th, gh, wh, ph\nPhonics FUN Book 2 U18-19, Book 3 U7-8\nPhonics GO Book 2 U6-9",
+      instructions: {
+        partA: "Part A: 選出該單字包含的複合子音（Digraph）組合。",
+        partB: "Part B: 聽單字，看圖並填入正確的複合子音字母組合（如：sh, ch, tch, th, gh, wh, ph）。",
+        partC: "Part C: 聽音辨字。"
+      }
+    },
+    { 
+      id: 8, 
+      file: "theme08.json", 
+      name: "Special Consonants", 
+      fullTheme: "Special Consonants", 
+      scope: "Special Consonants (ck, kn, wr, -mb, -mn, -nd...)\nPhonics FUN Book 3 U8, 9, 13-16\nPhonics GO Book 2 U16-19",
+      instructions: {
+        partA: "Part A: 選出該單字包含的字首或字尾子音。",
+        partB: "Part B: 聽單字，看圖並填入正確的組合字母（如：kn-, wr-, -mb, -ng, -nk 等）。",
+        partC: "Part C: 聽音辨字。"
+      }
+    },
+    { 
+      id: 9, 
+      file: "theme09.json", 
+      name: "Endings & Stress", 
+      fullTheme: "Endings, Syllables, Stress", 
+      scope: "-s/-es, -ed, 1~3 syllables\nPhonics FUN Book 3 U17-19",
+      instructions: {
+        partA: "Part A: 仔細聽，並選出該單字正確的字尾發音或音節數。",
+        partB: "Part B: 聽單字，看圖並填入正確的字尾變化（-s, -es, 或 -ed）。",
+        partC: "Part C: 聽音辨字。"
+      }
+    }
   ];
 
   let currentThemeMeta = null;
   let currentThemeData = null;
   let currentPart = 'partA';
-  
-  // 記錄單題進度
   let currentIndex = 0;
   let currentScore = 0;
 
@@ -558,6 +678,12 @@
     currentScore = 0;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     if(btn) btn.classList.add('active');
+
+    // 即時更新該大題的作答說明
+    if (currentThemeMeta && currentThemeMeta.instructions) {
+      document.getElementById('instructionText').innerText = currentThemeMeta.instructions[partKey] || "請依題意作答。";
+    }
+
     renderCurrentQuestion();
   }
 
@@ -571,13 +697,11 @@
     }
   }
 
-  // 渲染當前單一題目
   function renderCurrentQuestion() {
     if (!currentThemeData) return;
     const container = document.getElementById('questionsContainer');
     const questions = currentThemeData[currentPart] || [];
 
-    // 若已作答完所有題目，顯示結算卡片
     if (questions.length > 0 && currentIndex >= questions.length) {
       const percentage = Math.round((currentScore / questions.length) * 100);
       container.innerHTML = `
@@ -656,14 +780,12 @@
 
     container.innerHTML = cardContent;
 
-    // 自動聚焦填空題輸入框
     if (currentPart === 'partB') {
       const input = document.getElementById('fillInput');
       if (input) input.focus();
     }
   }
 
-  // 處理選擇題點選（自動跳題）
   function handleChoice(btn, selected, correct) {
     const parent = btn.parentElement;
     parent.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
@@ -673,20 +795,17 @@
       currentScore++;
     } else {
       btn.classList.add('wrong');
-      // 將正確選項標記出來
       parent.querySelectorAll('.option-btn').forEach(b => {
         if (b.innerText === correct) b.classList.add('correct');
       });
     }
 
-    // 停留 0.8 秒後自動進入下一題
     setTimeout(() => {
       currentIndex++;
       renderCurrentQuestion();
     }, 850);
   }
 
-  // 處理填空題提交
   function handleFill(correct) {
     const input = document.getElementById('fillInput');
     const feedback = document.getElementById('fillFeedback');
