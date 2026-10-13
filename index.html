@@ -23,31 +23,27 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
     }
 
-  body { 
-  min-height: 100vh; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  color: var(--text-main);
-  /* 加深四周背景漸層色，讓中間藍色卡片更突出 */
-  background: radial-gradient(circle at 10% 15%, rgba(74, 144, 226, 0.35), transparent 45%),
-              radial-gradient(circle at 90% 15%, rgba(229, 62, 62, 0.28), transparent 45%),
-              radial-gradient(circle at 15% 85%, rgba(255, 179, 0, 0.32), transparent 45%),
-              radial-gradient(circle at 85% 85%, rgba(128, 90, 213, 0.28), transparent 45%),
-              #DCE6F2;
-  background-attachment: fixed;
-}
+    body { 
+      min-height: 100vh; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      color: var(--text-main);
+      background: radial-gradient(circle at 10% 15%, rgba(74, 144, 226, 0.35), transparent 45%),
+                  radial-gradient(circle at 90% 15%, rgba(229, 62, 62, 0.28), transparent 45%),
+                  radial-gradient(circle at 15% 85%, rgba(255, 179, 0, 0.32), transparent 45%),
+                  radial-gradient(circle at 85% 85%, rgba(128, 90, 213, 0.28), transparent 45%),
+                  #DCE6F2;
+      background-attachment: fixed;
+    }
 
-   .app-container {
+    .app-container {
       width: 100%;
       max-width: 820px;
       min-height: 90vh;
-      /* 明顯有感的童趣淡天藍渐層底色（呼應封面主題色） */
       background: linear-gradient(165deg, #E6F0FA 0%, #DCE8F6 50%, #EDF4FB 100%);
       border-radius: 26px;
-      /* 扎實的立體雙層邊框：外框白光 + 內輪廓藍線 */
       border: 3px solid #FFFFFF;
-      /* 深度懸浮陰影：深藍投影 + 頂部白色厚度反光，立體感極強 */
       box-shadow: 
         0 24px 48px -12px rgba(30, 64, 110, 0.28),
         0 8px 16px -4px rgba(30, 64, 110, 0.15),
@@ -61,7 +57,6 @@
       padding: 30px;
     }
 
-    /* 頁面切換控制 */
     .view-screen { 
       display: none; 
       flex-direction: column; 
@@ -80,7 +75,6 @@
       padding: 20px 0;
     }
 
-    /* 標題設計 (弧形效果) */
     .curved-header { 
       text-align: center; 
       margin-bottom: 15px; 
@@ -118,7 +112,7 @@
       margin: -6px auto 10px auto;
     }
 
-    /* 扉頁：五本書彩虹拱形展示區 */
+    /* 五本書彩虹拱形 */
     .books-container {
       display: flex;
       justify-content: center;
@@ -129,7 +123,6 @@
       height: 220px;
       padding-bottom: 20px;
     }
-
     .book-cover {
       width: 110px;
       height: 155px;
@@ -140,13 +133,11 @@
       object-fit: cover;
       background-color: #fff;
     }
-
     .book-cover:nth-child(1) { transform: translateY(22px) rotate(-14deg); }
     .book-cover:nth-child(2) { transform: translateY(6px) rotate(-7deg); }
     .book-cover:nth-child(3) { transform: translateY(-8px) rotate(0deg); z-index: 2; }
     .book-cover:nth-child(4) { transform: translateY(6px) rotate(7deg); }
     .book-cover:nth-child(5) { transform: translateY(22px) rotate(14deg); }
-
     .book-cover:hover {
       transform: translateY(-16px) scale(1.12) rotate(0deg) !important;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
@@ -175,45 +166,82 @@
       box-shadow: 0 6px 16px rgba(45, 55, 72, 0.2);
     }
 
-    /* 主題目錄 (3x3 圓圈) */
+    /* 目錄頁：果凍立體按鈕 */
+    #screen-menu {
+      justify-content: space-between;
+      padding: 10px 0 15px 0;
+    }
     .theme-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px 20px;
+      gap: 22px 18px;
       width: 100%;
-      max-width: 650px;
-      margin: 20px auto;
+      max-width: 580px;
+      margin: auto auto;
     }
     .circle-theme-btn {
-      width: 110px;
-      height: 110px;
+      width: 118px;
+      height: 118px;
       margin: 0 auto;
       border-radius: 50%;
-      border: 2.5px solid #2D3748;
+      border: 3.5px solid #FFFFFF;
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 12px 8px;
       text-align: center;
       cursor: pointer;
-      transition: all 0.2s ease;
-      font-size: 0.8rem;
-      font-weight: 600;
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 0.85rem;
+      font-weight: 700;
       color: #2D3748;
+      box-shadow: 0 8px 18px rgba(74, 144, 226, 0.16), 0 3px 6px rgba(0,0,0,0.04);
+      position: relative;
     }
-    .circle-theme-btn span.theme-number { 
-      font-size: 1.1rem; 
-      font-weight: bold; 
-      margin-bottom: 2px; 
+    .circle-theme-btn span.theme-number {
+      font-size: 1rem;
+      font-weight: 800;
+      padding: 2px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.85);
+      margin-bottom: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
     }
-    .circle-theme-btn:hover { 
-      background: #EDF2F7; 
-      transform: scale(1.05); 
+    .circle-theme-btn:hover {
+      transform: translateY(-6px) scale(1.06);
+      box-shadow: 0 14px 26px rgba(74, 144, 226, 0.25);
+    }
+    .circle-theme-btn:nth-child(1) { background: linear-gradient(145deg, #EBF4FF, #C3DAFE); color: #2B6CB0; }
+    .circle-theme-btn:nth-child(2) { background: linear-gradient(145deg, #FFF5F5, #FED7D7); color: #C53030; }
+    .circle-theme-btn:nth-child(3) { background: linear-gradient(145deg, #FFFFF0, #FEFCBF); color: #B7791F; }
+    .circle-theme-btn:nth-child(4) { background: linear-gradient(145deg, #F0FFF4, #C6F6D5); color: #276749; }
+    .circle-theme-btn:nth-child(5) { background: linear-gradient(145deg, #FAF5FF, #E9D8FD); color: #6B46C1; }
+    .circle-theme-btn:nth-child(6) { background: linear-gradient(145deg, #E6FFFA, #B2F5EA); color: #234E52; }
+    .circle-theme-btn:nth-child(7) { background: linear-gradient(145deg, #FFF5F7, #FED7E2); color: #97266D; }
+    .circle-theme-btn:nth-child(8) { background: linear-gradient(145deg, #F7FAFC, #E2E8F0); color: #4A5568; }
+    .circle-theme-btn:nth-child(9) { background: linear-gradient(145deg, #FEFCBF, #FEEBC8); color: #C05621; }
+
+    #screen-menu .back-btn {
+      margin: 15px auto 0 auto;
+      padding: 8px 24px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1.5px solid #CBD5E0;
+      color: #4A5568;
+      font-size: 0.92rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+    }
+    #screen-menu .back-btn:hover {
+      background: #FFFFFF;
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      transform: translateY(-2px);
     }
 
-    /* 答題畫面導航與資訊 */
+    /* 答題畫面 */
     .nav-bar { 
       width: 100%; 
       display: flex; 
@@ -230,59 +258,51 @@
       font-weight: bold; 
     }
     
-    /* 適用範圍提示框 */
     .scope-box {
       width: 100%;
-      background: #EBF8FF;
+      background: #FFFFFF;
       border-left: 5px solid var(--primary-color);
       border-radius: 6px;
       padding: 10px 16px;
       margin-bottom: 14px;
       font-size: 0.9rem;
       line-height: 1.4;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-    .scope-title { 
-      font-weight: bold; 
-      color: #2B6CB0; 
-      margin-bottom: 3px; 
-    }
-    .scope-detail { 
-      color: #4A5568; 
-      font-size: 0.85rem; 
-      white-space: pre-line; 
-    }
+    .scope-title { font-weight: bold; color: #2B6CB0; margin-bottom: 3px; }
+    .scope-detail { color: #4A5568; font-size: 0.85rem; white-space: pre-line; }
 
     .part-tabs { 
       display: flex; 
       gap: 10px; 
       width: 100%; 
       margin-bottom: 15px; 
-      border-bottom: 2px solid #EDF2F7; 
+      border-bottom: 2px solid rgba(255,255,255,0.6); 
       padding-bottom: 8px; 
     }
     .tab-btn { 
-      background: none; 
-      border: none; 
+      background: rgba(255,255,255,0.6); 
+      border: 1px solid #CBD5E0; 
       font-size: 1rem; 
-      padding: 6px 14px; 
+      padding: 6px 16px; 
       cursor: pointer; 
-      border-radius: 6px; 
+      border-radius: 20px; 
       color: var(--text-muted); 
       font-weight: 600; 
+      transition: 0.2s;
     }
     .tab-btn.active { 
       background: var(--primary-color); 
       color: #FFF; 
+      border-color: var(--primary-color);
     }
 
-    /* 單題作答專用卡片容器 */
     .quiz-body { 
       width: 100%; 
       flex: 1; 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
     }
 
     .progress-bar-container {
@@ -298,7 +318,7 @@
     .progress-track {
       flex: 1;
       height: 8px;
-      background: #E2E8F0;
+      background: #CBD5E0;
       border-radius: 4px;
       margin: 0 15px;
       overflow: hidden;
@@ -310,7 +330,6 @@
       transition: width 0.3s ease;
     }
 
-    /* 題型作答說明區（移入卡片頂端） */
     .part-instruction {
       width: 100%;
       background: #FFFDF5;
@@ -334,7 +353,7 @@
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
       padding: 25px 20px 30px 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.04);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -363,7 +382,6 @@
       margin-bottom: 22px;
     }
 
-    /* 單選按鈕列表 */
     .card-options {
       display: flex;
       flex-direction: column;
@@ -397,7 +415,6 @@
       color: #FFF !important;
     }
 
-    /* 填空題輸入框 */
     .fill-group {
       display: flex;
       gap: 12px;
@@ -438,12 +455,12 @@
     }
 
     .btn-audio {
-      background: #EDF2F7;
-      border: 1.5px solid #CBD5E0;
+      background: #EBF8FF;
+      border: 2px solid var(--primary-color);
       border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      font-size: 1.2rem;
+      width: 46px;
+      height: 46px;
+      font-size: 1.3rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -451,200 +468,29 @@
       transition: 0.2s;
     }
     .btn-audio:hover {
-      background: #E2E8F0;
-      transform: scale(1.05);
+      background: #BEE3F8;
+      transform: scale(1.08);
     }
 
-    /* 測驗完成結果卡片 */
-    .result-card {
-      text-align: center;
-      padding: 40px 20px;
-    }
-    .result-score {
-      font-size: 3rem;
-      font-weight: bold;
-      color: var(--primary-color);
-      margin: 15px 0;
-    }
-    /* =========================================
-       手機與平板響應式優化 (修正手機跑版問題)
-       ========================================= */
+    /* RWD 手機版最適配 */
     @media (max-width: 680px) {
-      body {
-        padding: 0;
-        align-items: flex-start;
-      }
-
       .app-container {
         margin: 0;
         min-height: 100vh;
-        border-radius: 0; /* 手機全螢幕滿版體驗 */
-        padding: 20px 16px;
-        box-shadow: none;
+        border-radius: 0;
+        padding: 20px 14px;
       }
-
-      /* 弧形標題字體縮小 */
-      .curved-header h1 {
-        font-size: 1.6rem;
-        padding: 0 16px;
-      }
-      .header-curve-line {
-        width: 160px;
-        height: 10px;
-      }
-
-      /* 首頁：彩虹拱形 5 本書縮放自適應 */
+      .curved-header h1 { font-size: 1.6rem; }
       .books-container {
         height: 160px;
-        margin: 30px auto 25px auto;
+        margin: 25px auto 20px auto;
         gap: 6px;
-        padding-bottom: 10px;
       }
-      .book-cover {
-        width: 58px;   /* 縮小書本寬度，確保 5 本書在手機一排完整顯示 */
-        height: 82px;
-        border-radius: 5px;
-      }
-      .book-cover:nth-child(1) { transform: translateY(14px) rotate(-10deg); }
-      .book-cover:nth-child(2) { transform: translateY(4px) rotate(-5deg); }
-      .book-cover:nth-child(3) { transform: translateY(-4px) rotate(0deg); }
-      .book-cover:nth-child(4) { transform: translateY(4px) rotate(5deg); }
-      .book-cover:nth-child(5) { transform: translateY(14px) rotate(10deg); }
-
-      /* 主題目錄：縮小 3x3 圓圈尺寸 */
-      .theme-grid {
-        gap: 15px 10px;
-        margin: 15px auto;
-      }
-      .circle-theme-btn {
-        width: 82px;
-        height: 82px;
-        font-size: 0.72rem;
-        padding: 5px;
-      }
-      .circle-theme-btn span.theme-number {
-        font-size: 0.95rem;
-      }
-
-      /* 答題卡片：字體與間距自適應 */
-      .single-card {
-        padding: 20px 14px;
-        border-radius: 12px;
-      }
-      .part-instruction {
-        font-size: 0.85rem;
-        padding: 8px 10px;
-      }
-      .card-question-text {
-        font-size: 1.3rem;
-      }
-      .card-question-hint {
-        font-size: 0.95rem;
-        margin-bottom: 16px;
-      }
-      .option-btn {
-        padding: 12px 14px;
-        font-size: 1rem;
-      }
-      .fill-group {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .input-fill {
-        width: 100%;
-        max-width: 200px;
-      }
-      .btn-submit-fill {
-        width: 100%;
-        max-width: 200px;
-      }
+      .book-cover { width: 58px; height: 82px; }
+      .theme-grid { gap: 14px 10px; }
+      .circle-theme-btn { width: 85px; height: 85px; font-size: 0.72rem; }
+      .single-card { padding: 18px 12px; }
     }
-    /* --- 1. 目錄頁整體均勻垂直分佈 --- */
-#screen-menu {
-  justify-content: space-between;
-  padding: 10px 0 15px 0;
-}
-
-/* --- 2. 3x3 網格自動置中 --- */
-.theme-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px 18px;
-  width: 100%;
-  max-width: 580px;
-  margin: auto auto; /* 自動上下置中，解決下方留白過多問題 */
-}
-
-/* --- 3. 升級版立體果凍圓圈按鈕 --- */
-.circle-theme-btn {
-  width: 118px;
-  height: 118px;
-  margin: 0 auto;
-  border-radius: 50%;
-  border: 3.5px solid #FFFFFF; /* 厚實白邊框 */
-  background: #FFFFFF;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: #2D3748;
-  box-shadow: 0 8px 18px rgba(74, 144, 226, 0.16), 0 3px 6px rgba(0,0,0,0.04);
-  position: relative;
-}
-
-/* 單元編號膠囊標籤 */
-.circle-theme-btn span.theme-number {
-  font-size: 1rem;
-  font-weight: 800;
-  padding: 2px 10px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.85);
-  margin-bottom: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-}
-
-/* 滑鼠懸停效果：彈跳浮起 */
-.circle-theme-btn:hover {
-  transform: translateY(-6px) scale(1.06);
-  box-shadow: 0 14px 26px rgba(74, 144, 226, 0.25);
-}
-
-/* 為 9 個主題套上呼應書本封面的糖果漸層色 */
-.circle-theme-btn:nth-child(1) { background: linear-gradient(145deg, #EBF4FF, #C3DAFE); color: #2B6CB0; }
-.circle-theme-btn:nth-child(2) { background: linear-gradient(145deg, #FFF5F5, #FED7D7); color: #C53030; }
-.circle-theme-btn:nth-child(3) { background: linear-gradient(145deg, #FFFFF0, #FEFCBF); color: #B7791F; }
-.circle-theme-btn:nth-child(4) { background: linear-gradient(145deg, #F0FFF4, #C6F6D5); color: #276749; }
-.circle-theme-btn:nth-child(5) { background: linear-gradient(145deg, #FAF5FF, #E9D8FD); color: #6B46C1; }
-.circle-theme-btn:nth-child(6) { background: linear-gradient(145deg, #E6FFFA, #B2F5EA); color: #234E52; }
-.circle-theme-btn:nth-child(7) { background: linear-gradient(145deg, #FFF5F7, #FED7E2); color: #97266D; }
-.circle-theme-btn:nth-child(8) { background: linear-gradient(145deg, #F7FAFC, #E2E8F0); color: #4A5568; }
-.circle-theme-btn:nth-child(9) { background: linear-gradient(145deg, #FEFCBF, #FEEBC8); color: #C05621; }
-
-/* --- 4. 底部「回到主頁」按鈕膠囊化 --- */
-#screen-menu .back-btn {
-  margin: 15px auto 0 auto;
-  padding: 8px 24px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1.5px solid #CBD5E0;
-  color: #4A5568;
-  font-size: 0.92rem;
-  transition: all 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.04);
-}
-
-#screen-menu .back-btn:hover {
-  background: #FFFFFF;
-  border-color: var(--primary-color);
-  color: var(--primary-color);
-  transform: translateY(-2px);
-}
   </style>
 </head>
 <body>
@@ -679,7 +525,7 @@
 
     <div class="theme-grid" id="themeGrid"></div>
 
-    <button class="back-btn" style="margin-top: auto;" onclick="navigateTo('screen-cover')">← 回到主頁</button>
+    <button class="back-btn" onclick="navigateTo('screen-cover')">← 回到主頁</button>
   </section>
 
   <!-- 3. 測驗進行頁 -->
@@ -689,20 +535,17 @@
       <span id="currentThemeTag" style="font-weight: bold; color: var(--text-muted);"></span>
     </div>
 
-    <!-- 範圍顯示區塊 (圖二資訊) -->
     <div class="scope-box" id="scopeContainer">
       <div class="scope-title" id="scopeTitle">適用主題</div>
       <div class="scope-detail" id="scopeDetail">題目範圍載入中...</div>
     </div>
 
-    <!-- Part 切換 -->
     <div class="part-tabs">
       <button class="tab-btn active" onclick="switchPart('partA', this)">Part A</button>
       <button class="tab-btn" onclick="switchPart('partB', this)">Part B</button>
       <button class="tab-btn" onclick="switchPart('partC', this)">Part C</button>
     </div>
 
-    <!-- 單題推進容器 -->
     <div class="quiz-body" id="questionsContainer"></div>
   </section>
 
@@ -858,7 +701,7 @@
       currentThemeData = await response.json();
       switchPart('partA', document.querySelector('.tab-btn'));
     } catch (err) {
-      container.innerHTML = `<div style="color:var(--danger)">載入 ${currentThemeMeta.file} 失敗，請確認檔案是否存在。</div>`;
+      container.innerHTML = `<div style="color:var(--danger)">載入 ${currentThemeMeta.file} 失敗，請確認檔案是否存在於根目錄。</div>`;
       console.error(err);
     }
   }
@@ -872,14 +715,39 @@
     renderCurrentQuestion();
   }
 
-  function playAudio(text) {
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.85;
-      window.speechSynthesis.speak(utterance);
+  // 高精確度美式英語發音合成核心
+  function playAccurateSpeech(text) {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+
+    // 智能轉換：若傳入的是音標或複合字串（如 /æ/, /æ/, ax），自動萃取純英語單字 ax 以確保發音無誤
+    let cleanWord = text;
+    if (text.includes('/')) {
+      const parts = text.split(',');
+      cleanWord = parts[parts.length - 1].replace(/\//g, '').trim();
     }
+
+    const utterance = new SpeechSynthesisUtterance(cleanWord);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.8; // 稍微調慢，讓學生聽得清楚
+    utterance.pitch = 1.0;
+
+    // 挑選最佳美式英語真人語音包（避免機械式預設腔調）
+    const voices = window.speechSynthesis.getVoices();
+    const usVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+    if (usVoice) utterance.voice = usVoice;
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  // 取得當前題目專用的朗讀文字
+  function getSpokenWord(q) {
+    if (q.speakText) return q.speakText;
+    if (q.audioScript) return q.audioScript;
+    if (q.question) return q.question;
+    if (q.fullWord) return q.fullWord;
+    if (q.answer) return q.answer;
+    return "";
   }
 
   function renderCurrentQuestion() {
@@ -890,9 +758,9 @@
     if (questions.length > 0 && currentIndex >= questions.length) {
       const percentage = Math.round((currentScore / questions.length) * 100);
       container.innerHTML = `
-        <div class="single-card result-card">
+        <div class="single-card" style="padding:40px 20px;">
           <h2>測驗完成！</h2>
-          <div class="result-score">${currentScore} / ${questions.length}</div>
+          <div style="font-size:3rem; font-weight:bold; color:var(--primary-color); margin:15px 0;">${currentScore} / ${questions.length}</div>
           <p style="color:var(--text-muted); margin-bottom:25px;">正確率：${percentage}%</p>
           <div style="display:flex; gap:12px;">
             <button class="btn-start" style="padding:10px 24px; font-size:1rem;" onclick="switchPart('${currentPart}', document.querySelector('.tab-btn.active'))">重新練習</button>
@@ -911,13 +779,12 @@
     const q = questions[currentIndex];
     const total = questions.length;
     const progressPercent = ((currentIndex + 1) / total) * 100;
+    const spokenText = getSpokenWord(q);
 
-    // 取得當前大題作答說明
     const instructionText = (currentThemeMeta && currentThemeMeta.instructions) 
       ? (currentThemeMeta.instructions[currentPart] || "請依題意作答。") 
       : "請依題意作答。";
 
-    // 將進度條放在最上方，下方依序放卡片、卡片內部頂端放作答說明
     let cardContent = `
       <div class="progress-bar-container">
         <span>Question ${currentIndex + 1} / ${total}</span>
@@ -933,8 +800,8 @@
     if (currentPart === 'partA') {
       cardContent += `
         <div class="card-question-text">
-          ${q.question || '請選出正確答案'}
-          ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
+          ${q.question || '請聽發音選出答案'}
+          <button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>
         </div>
         <div class="card-options">
           ${q.options.map(opt => `
@@ -944,7 +811,10 @@
       `;
     } else if (currentPart === 'partB') {
       cardContent += `
-        <div class="card-question-text">${q.prompt}</div>
+        <div class="card-question-text">
+          ${q.prompt}
+          ${spokenText ? `<button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>` : ''}
+        </div>
         ${q.hint ? `<div class="card-question-hint">提示：${q.hint}</div>` : ''}
         <div class="fill-group">
           <input type="text" class="input-fill" id="fillInput" placeholder="填寫字母" autocomplete="off" onkeydown="if(event.key==='Enter') handleFill('${q.answer}')">
@@ -957,9 +827,9 @@
       cardContent += `
         <div class="card-question-text">
           仔細聽發音：
-          ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
+          <button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>
         </div>
-        <div class="card-question-hint">點擊喇叭聆聽後選出單字</div>
+        <div class="card-question-hint">點擊上方喇叭聆聽標準發音</div>
         <div class="card-options">
           ${q.options.map(opt => `
             <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
@@ -968,8 +838,13 @@
       `;
     }
 
-    cardContent += `</div>`; // 閉合 .single-card
+    cardContent += `</div>`;
     container.innerHTML = cardContent;
+
+    // 若需要，進入題目時可自動播放一次
+    if (spokenText && currentPart === 'partC') {
+      setTimeout(() => playAccurateSpeech(spokenText), 200);
+    }
 
     if (currentPart === 'partB') {
       const input = document.getElementById('fillInput');
@@ -1024,6 +899,13 @@
   function nextQuestion() {
     currentIndex++;
     renderCurrentQuestion();
+  }
+
+  // 確保瀏覽器語音列表載入完成
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
   }
 
   initThemeGrid();
