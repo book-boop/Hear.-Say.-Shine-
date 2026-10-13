@@ -456,6 +456,99 @@
       color: var(--primary-color);
       margin: 15px 0;
     }
+    /* =========================================
+       手機與平板響應式優化 (修正手機跑版問題)
+       ========================================= */
+    @media (max-width: 680px) {
+      body {
+        padding: 0;
+        align-items: flex-start;
+      }
+
+      .app-container {
+        margin: 0;
+        min-height: 100vh;
+        border-radius: 0; /* 手機全螢幕滿版體驗 */
+        padding: 20px 16px;
+        box-shadow: none;
+      }
+
+      /* 弧形標題字體縮小 */
+      .curved-header h1 {
+        font-size: 1.6rem;
+        padding: 0 16px;
+      }
+      .header-curve-line {
+        width: 160px;
+        height: 10px;
+      }
+
+      /* 首頁：彩虹拱形 5 本書縮放自適應 */
+      .books-container {
+        height: 160px;
+        margin: 30px auto 25px auto;
+        gap: 6px;
+        padding-bottom: 10px;
+      }
+      .book-cover {
+        width: 58px;   /* 縮小書本寬度，確保 5 本書在手機一排完整顯示 */
+        height: 82px;
+        border-radius: 5px;
+      }
+      .book-cover:nth-child(1) { transform: translateY(14px) rotate(-10deg); }
+      .book-cover:nth-child(2) { transform: translateY(4px) rotate(-5deg); }
+      .book-cover:nth-child(3) { transform: translateY(-4px) rotate(0deg); }
+      .book-cover:nth-child(4) { transform: translateY(4px) rotate(5deg); }
+      .book-cover:nth-child(5) { transform: translateY(14px) rotate(10deg); }
+
+      /* 主題目錄：縮小 3x3 圓圈尺寸 */
+      .theme-grid {
+        gap: 15px 10px;
+        margin: 15px auto;
+      }
+      .circle-theme-btn {
+        width: 82px;
+        height: 82px;
+        font-size: 0.72rem;
+        padding: 5px;
+      }
+      .circle-theme-btn span.theme-number {
+        font-size: 0.95rem;
+      }
+
+      /* 答題卡片：字體與間距自適應 */
+      .single-card {
+        padding: 20px 14px;
+        border-radius: 12px;
+      }
+      .part-instruction {
+        font-size: 0.85rem;
+        padding: 8px 10px;
+      }
+      .card-question-text {
+        font-size: 1.3rem;
+      }
+      .card-question-hint {
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+      }
+      .option-btn {
+        padding: 12px 14px;
+        font-size: 1rem;
+      }
+      .fill-group {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .input-fill {
+        width: 100%;
+        max-width: 200px;
+      }
+      .btn-submit-fill {
+        width: 100%;
+        max-width: 200px;
+      }
+    }
   </style>
 </head>
 <body>
