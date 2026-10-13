@@ -214,7 +214,7 @@
       font-weight: bold; 
     }
     
-    /* 適用範圍提示框 (圖二資訊) */
+    /* 適用範圍提示框 */
     .scope-box {
       width: 100%;
       background: #EBF8FF;
@@ -234,22 +234,6 @@
       color: #4A5568; 
       font-size: 0.85rem; 
       white-space: pre-line; 
-    }
-
-    /* 題型作答說明 (如圈出母音發音不同等) */
-    .part-instruction {
-      width: 100%;
-      background: #FFFDF5;
-      border: 1.5px solid #F6E05E;
-      border-radius: 8px;
-      padding: 10px 15px;
-      margin-bottom: 15px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #744210;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .part-tabs { 
@@ -310,12 +294,30 @@
       transition: width 0.3s ease;
     }
 
+    /* 題型作答說明區（移入卡片頂端） */
+    .part-instruction {
+      width: 100%;
+      background: #FFFDF5;
+      border: 1.5px solid #F6E05E;
+      border-radius: 8px;
+      padding: 10px 15px;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #744210;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+    }
+
     .single-card {
       width: 100%;
       background: #FFFFFF;
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
-      padding: 30px 20px;
+      padding: 25px 20px 30px 20px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
       display: flex;
       flex-direction: column;
@@ -333,16 +335,16 @@
       font-size: 1.6rem;
       font-weight: bold;
       color: #1A202C;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 12px;
       justify-content: center;
     }
     .card-question-hint {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: #718096;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
     }
 
     /* 單選按鈕列表 */
@@ -496,12 +498,6 @@
     <div class="scope-box" id="scopeContainer">
       <div class="scope-title" id="scopeTitle">適用主題</div>
       <div class="scope-detail" id="scopeDetail">題目範圍載入中...</div>
-    </div>
-
-    <!-- 題型作答說明區 (原檔標註之作答指引) -->
-    <div class="part-instruction" id="partInstruction">
-      <span>📌</span>
-      <span id="instructionText">請依指示作答</span>
     </div>
 
     <!-- Part 切換 -->
@@ -678,12 +674,6 @@
     currentScore = 0;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     if(btn) btn.classList.add('active');
-
-    // 即時更新該大題的作答說明
-    if (currentThemeMeta && currentThemeMeta.instructions) {
-      document.getElementById('instructionText').innerText = currentThemeMeta.instructions[partKey] || "請依題意作答。";
-    }
-
     renderCurrentQuestion();
   }
 
@@ -727,57 +717,63 @@
     const total = questions.length;
     const progressPercent = ((currentIndex + 1) / total) * 100;
 
+    // 取得當前大題作答說明
+    const instructionText = (currentThemeMeta && currentThemeMeta.instructions) 
+      ? (currentThemeMeta.instructions[currentPart] || "請依題意作答。") 
+      : "請依題意作答。";
+
+    // 將進度條放在最上方，下方依序放卡片、卡片內部頂端放作答說明
     let cardContent = `
       <div class="progress-bar-container">
         <span>Question ${currentIndex + 1} / ${total}</span>
         <div class="progress-track"><div class="progress-fill" style="width:${progressPercent}%"></div></div>
       </div>
+      <div class="single-card">
+        <div class="part-instruction">
+          <span>📌</span>
+          <span>${instructionText}</span>
+        </div>
     `;
 
     if (currentPart === 'partA') {
       cardContent += `
-        <div class="single-card">
-          <div class="card-question-text">
-            ${q.question || '請選出正確答案'}
-            ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
-          </div>
-          <div class="card-options">
-            ${q.options.map(opt => `
-              <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
-            `).join('')}
-          </div>
+        <div class="card-question-text">
+          ${q.question || '請選出正確答案'}
+          ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
+        </div>
+        <div class="card-options">
+          ${q.options.map(opt => `
+            <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
+          `).join('')}
         </div>
       `;
     } else if (currentPart === 'partB') {
       cardContent += `
-        <div class="single-card">
-          <div class="card-question-text">${q.prompt}</div>
-          ${q.hint ? `<div class="card-question-hint">提示：${q.hint}</div>` : ''}
-          <div class="fill-group">
-            <input type="text" class="input-fill" id="fillInput" placeholder="填寫字母" autocomplete="off" onkeydown="if(event.key==='Enter') handleFill('${q.answer}')">
-            <button class="btn-submit-fill" onclick="handleFill('${q.answer}')">檢查</button>
-          </div>
-          <div id="fillFeedback" style="font-weight:bold; font-size:1.1rem; margin-top:15px; min-height:24px;"></div>
-          <button id="nextBtn" class="btn-next-action" style="display:none;" onclick="nextQuestion()">下一題 →</button>
+        <div class="card-question-text">${q.prompt}</div>
+        ${q.hint ? `<div class="card-question-hint">提示：${q.hint}</div>` : ''}
+        <div class="fill-group">
+          <input type="text" class="input-fill" id="fillInput" placeholder="填寫字母" autocomplete="off" onkeydown="if(event.key==='Enter') handleFill('${q.answer}')">
+          <button class="btn-submit-fill" onclick="handleFill('${q.answer}')">檢查</button>
         </div>
+        <div id="fillFeedback" style="font-weight:bold; font-size:1.1rem; margin-top:15px; min-height:24px;"></div>
+        <button id="nextBtn" class="btn-next-action" style="display:none;" onclick="nextQuestion()">下一題 →</button>
       `;
     } else if (currentPart === 'partC') {
       cardContent += `
-        <div class="single-card">
-          <div class="card-question-text">
-            仔細聽發音：
-            ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
-          </div>
-          <div class="card-question-hint">點擊喇叭聆聽後選出單字</div>
-          <div class="card-options">
-            ${q.options.map(opt => `
-              <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
-            `).join('')}
-          </div>
+        <div class="card-question-text">
+          仔細聽發音：
+          ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
+        </div>
+        <div class="card-question-hint">點擊喇叭聆聽後選出單字</div>
+        <div class="card-options">
+          ${q.options.map(opt => `
+            <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
+          `).join('')}
         </div>
       `;
     }
 
+    cardContent += `</div>`; // 閉合 .single-card
     container.innerHTML = cardContent;
 
     if (currentPart === 'partB') {
