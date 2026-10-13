@@ -23,14 +23,20 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
     }
 
-    body { 
-      background-color: var(--bg-color); 
-      color: var(--text-main); 
-      min-height: 100vh; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-    }
+  body { 
+  min-height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  color: var(--text-main);
+  /* 融合五本書色調的活潑柔和童趣漸層 */
+  background: radial-gradient(circle at 10% 15%, rgba(74, 144, 226, 0.15), transparent 40%),
+              radial-gradient(circle at 90% 15%, rgba(229, 62, 62, 0.12), transparent 40%),
+              radial-gradient(circle at 15% 85%, rgba(255, 179, 0, 0.15), transparent 40%),
+              radial-gradient(circle at 85% 85%, rgba(128, 90, 213, 0.12), transparent 40%),
+              #F4F7FB;
+  background-attachment: fixed;
+}
 
     .app-container {
       width: 100%;
