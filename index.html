@@ -29,12 +29,12 @@
   justify-content: center; 
   align-items: center; 
   color: var(--text-main);
-  /* 融合五本書色調的活潑柔和童趣漸層 */
-  background: radial-gradient(circle at 10% 15%, rgba(74, 144, 226, 0.15), transparent 40%),
-              radial-gradient(circle at 90% 15%, rgba(229, 62, 62, 0.12), transparent 40%),
-              radial-gradient(circle at 15% 85%, rgba(255, 179, 0, 0.15), transparent 40%),
-              radial-gradient(circle at 85% 85%, rgba(128, 90, 213, 0.12), transparent 40%),
-              #F4F7FB;
+  /* 加深四周背景漸層色，讓中間藍色卡片更突出 */
+  background: radial-gradient(circle at 10% 15%, rgba(74, 144, 226, 0.35), transparent 45%),
+              radial-gradient(circle at 90% 15%, rgba(229, 62, 62, 0.28), transparent 45%),
+              radial-gradient(circle at 15% 85%, rgba(255, 179, 0, 0.32), transparent 45%),
+              radial-gradient(circle at 85% 85%, rgba(128, 90, 213, 0.28), transparent 45%),
+              #DCE6F2;
   background-attachment: fixed;
 }
 
@@ -42,22 +42,17 @@
       width: 100%;
       max-width: 820px;
       min-height: 90vh;
-      /* 採用與背景呼應的半透明漸層磨砂質感 */
-      background: linear-gradient(
-        135deg, 
-        rgba(255, 255, 255, 0.72) 0%, 
-        rgba(244, 247, 251, 0.6) 100%
-      );
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 24px;
-      /* 半透明高光邊框，界定邊界輪廓 */
-      border: 1.5px solid rgba(255, 255, 255, 0.85);
-      /* 多層複合陰影：內凹柔光 + 懸浮深層投影，營造立體感 */
+      /* 明顯有感的童趣淡天藍渐層底色（呼應封面主題色） */
+      background: linear-gradient(165deg, #E6F0FA 0%, #DCE8F6 50%, #EDF4FB 100%);
+      border-radius: 26px;
+      /* 扎實的立體雙層邊框：外框白光 + 內輪廓藍線 */
+      border: 3px solid #FFFFFF;
+      /* 深度懸浮陰影：深藍投影 + 頂部白色厚度反光，立體感極強 */
       box-shadow: 
-        0 20px 40px -15px rgba(0, 32, 74, 0.12),
-        0 0 0 1px rgba(255, 255, 255, 0.4),
-        inset 0 1px 2px rgba(255, 255, 255, 0.9);
+        0 24px 48px -12px rgba(30, 64, 110, 0.28),
+        0 8px 16px -4px rgba(30, 64, 110, 0.15),
+        inset 0 2px 4px rgba(255, 255, 255, 0.95),
+        inset 0 -2px 4px rgba(74, 144, 226, 0.15);
       display: flex;
       flex-direction: column;
       position: relative;
