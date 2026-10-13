@@ -59,15 +59,17 @@
     .view-screen.active { 
       display: flex; 
     }
+
+    /* 扉頁佈局 */
     #screen-cover {
       justify-content: space-between;
-      padding: 40px 0 20px 0;
+      padding: 20px 0;
     }
 
-    /* 弧形標題設計 */
+    /* 標題設計 (弧形效果) */
     .curved-header { 
       text-align: center; 
-      margin-bottom: 25px; 
+      margin-bottom: 15px; 
       position: relative; 
       width: 100%; 
     }
@@ -102,17 +104,17 @@
       margin: -6px auto 10px auto;
     }
 
-    /* 扉頁：五本書彩虹拱形排版 */
+    /* 扉頁：五本書彩虹拱形展示區 */
     .books-container {
       display: flex;
       justify-content: center;
       align-items: flex-end;
       gap: 14px;
-      margin: 10px auto 40px auto; /* 加上固定的上下距離，視覺重心會往上提 */
+      margin: 60px auto 40px auto;
       width: 100%;
       height: 220px;
       padding-bottom: 20px;
-}
+    }
 
     .book-cover {
       width: 110px;
@@ -125,32 +127,18 @@
       background-color: #fff;
     }
 
-    /* 拱形角度與位移設定 (中間高、兩側下沉微旋轉) */
-    .book-cover:nth-child(1) {
-      transform: translateY(22px) rotate(-14deg);
-    }
-    .book-cover:nth-child(2) {
-      transform: translateY(6px) rotate(-7deg);
-    }
-    .book-cover:nth-child(3) {
-      transform: translateY(-8px) rotate(0deg);
-      z-index: 2;
-    }
-    .book-cover:nth-child(4) {
-      transform: translateY(6px) rotate(7deg);
-    }
-    .book-cover:nth-child(5) {
-      transform: translateY(22px) rotate(14deg);
-    }
+    .book-cover:nth-child(1) { transform: translateY(22px) rotate(-14deg); }
+    .book-cover:nth-child(2) { transform: translateY(6px) rotate(-7deg); }
+    .book-cover:nth-child(3) { transform: translateY(-8px) rotate(0deg); z-index: 2; }
+    .book-cover:nth-child(4) { transform: translateY(6px) rotate(7deg); }
+    .book-cover:nth-child(5) { transform: translateY(22px) rotate(14deg); }
 
-    /* 滑鼠懸停浮起放大效果 */
     .book-cover:hover {
       transform: translateY(-16px) scale(1.12) rotate(0deg) !important;
       box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
       z-index: 10;
     }
 
-    /* 開始按鈕 */
     .btn-start {
       margin-top: 0;
       margin-bottom: 20px;
@@ -209,7 +197,7 @@
       transform: scale(1.05); 
     }
 
-    /* 答題介面樣式 */
+    /* 答題畫面導航與資訊 */
     .nav-bar { 
       width: 100%; 
       display: flex; 
@@ -232,9 +220,9 @@
       border-left: 5px solid var(--primary-color);
       border-radius: 6px;
       padding: 12px 18px;
-      margin-bottom: 20px;
-      font-size: 0.95rem;
-      line-height: 1.5;
+      margin-bottom: 15px;
+      font-size: 0.92rem;
+      line-height: 1.4;
     }
     .scope-title { 
       font-weight: bold; 
@@ -243,7 +231,7 @@
     }
     .scope-detail { 
       color: #4A5568; 
-      font-size: 0.88rem; 
+      font-size: 0.85rem; 
       white-space: pre-line; 
     }
 
@@ -270,79 +258,178 @@
       color: #FFF; 
     }
 
+    /* 單題作答專用卡片容器 */
     .quiz-body { 
       width: 100%; 
       flex: 1; 
-      overflow-y: auto; 
-      padding-right: 5px; 
-    }
-    .question-card { 
-      background: #FFF; 
-      border: 1px solid #E2E8F0; 
-      border-radius: 10px; 
-      padding: 15px 18px; 
-      margin-bottom: 15px; 
-    }
-    .question-header { 
-      font-weight: 600; 
-      margin-bottom: 10px; 
-      display: flex; 
-      align-items: center; 
-      gap: 8px; 
-    }
-    .options-group { 
-      display: flex; 
-      gap: 10px; 
-      flex-wrap: wrap; 
-      margin-top: 8px; 
-    }
-    .option-btn { 
-      border: 1.5px solid #CBD5E0; 
-      background: #FFF; 
-      border-radius: 6px; 
-      padding: 6px 16px; 
-      cursor: pointer; 
-      font-size: 0.95rem; 
-      transition: 0.2s; 
-    }
-    .option-btn:hover { 
-      border-color: var(--primary-color); 
-    }
-    .option-btn.correct { 
-      background: var(--success); 
-      color: #FFF; 
-      border-color: var(--success); 
-    }
-    .option-btn.wrong { 
-      background: var(--danger); 
-      color: #FFF; 
-      border-color: var(--danger); 
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .input-fill { 
-      padding: 6px 10px; 
-      border: 1.5px solid #CBD5E0; 
-      border-radius: 6px; 
-      font-size: 1rem; 
-      width: 90px; 
-      text-align: center; 
+    .progress-bar-container {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: var(--text-muted);
     }
-    .btn-audio { 
-      background: #EDF2F7; 
-      border: 1px solid #CBD5E0; 
-      border-radius: 50%; 
-      width: 34px; 
-      height: 34px; 
-      display: inline-flex; 
-      align-items: center; 
-      justify-content: center; 
-      cursor: pointer; 
+    .progress-track {
+      flex: 1;
+      height: 8px;
+      background: #E2E8F0;
+      border-radius: 4px;
+      margin: 0 15px;
+      overflow: hidden;
     }
-    .loading-text { 
-      font-size: 1.1rem; 
-      color: var(--text-muted); 
-      text-align: center; 
-      margin-top: 40px; 
+    .progress-fill {
+      height: 100%;
+      background: var(--primary-color);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .single-card {
+      width: 100%;
+      background: #FFFFFF;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 16px;
+      padding: 35px 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-question-text {
+      font-size: 1.6rem;
+      font-weight: bold;
+      color: #1A202C;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: center;
+    }
+    .card-question-hint {
+      font-size: 1.1rem;
+      color: #718096;
+      margin-bottom: 25px;
+    }
+
+    /* 單選按鈕列表 */
+    .card-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+      max-width: 420px;
+    }
+    .option-btn {
+      width: 100%;
+      padding: 14px 20px;
+      font-size: 1.15rem;
+      border: 2px solid #E2E8F0;
+      border-radius: 10px;
+      background: #FFFFFF;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .option-btn:hover:not(:disabled) {
+      border-color: var(--primary-color);
+      background: #F7FAFC;
+    }
+    .option-btn.correct {
+      background: var(--success) !important;
+      border-color: var(--success) !important;
+      color: #FFF !important;
+    }
+    .option-btn.wrong {
+      background: var(--danger) !important;
+      border-color: var(--danger) !important;
+      color: #FFF !important;
+    }
+
+    /* 填空題輸入框 */
+    .fill-group {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .input-fill {
+      padding: 10px 16px;
+      font-size: 1.3rem;
+      border: 2px solid #CBD5E0;
+      border-radius: 8px;
+      width: 140px;
+      text-align: center;
+      font-weight: bold;
+    }
+    .btn-submit-fill {
+      padding: 10px 24px;
+      font-size: 1.05rem;
+      background: var(--primary-color);
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-next-action {
+      margin-top: 25px;
+      padding: 10px 30px;
+      font-size: 1.1rem;
+      background: #2D3748;
+      color: #FFF;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-audio {
+      background: #EDF2F7;
+      border: 1.5px solid #CBD5E0;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .btn-audio:hover {
+      background: #E2E8F0;
+      transform: scale(1.05);
+    }
+
+    /* 測驗完成結果卡片 */
+    .result-card {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .result-score {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 15px 0;
     }
   </style>
 </head>
@@ -357,7 +444,7 @@
       <div class="header-curve-line"></div>
     </div>
 
-    <!-- 五本書彩虹拱形展示區 (PNG格式) -->
+    <!-- 五本書彩虹拱形展示區 -->
     <div class="books-container">
       <img src="./images/Phonics Fun 1.png" alt="Phonics Fun 1" class="book-cover">
       <img src="./images/Phonics Fun 2.png" alt="Phonics Fun 2" class="book-cover">
@@ -388,20 +475,20 @@
       <span id="currentThemeTag" style="font-weight: bold; color: var(--text-muted);"></span>
     </div>
 
-    <!-- 適用範圍提示框 (圖二資訊) -->
+    <!-- 範圍顯示區塊 (圖二資訊) -->
     <div class="scope-box" id="scopeContainer">
       <div class="scope-title" id="scopeTitle">適用主題</div>
       <div class="scope-detail" id="scopeDetail">題目範圍載入中...</div>
     </div>
 
-    <!-- Part 頁籤 -->
+    <!-- Part 切換 -->
     <div class="part-tabs">
       <button class="tab-btn active" onclick="switchPart('partA', this)">Part A</button>
       <button class="tab-btn" onclick="switchPart('partB', this)">Part B</button>
       <button class="tab-btn" onclick="switchPart('partC', this)">Part C</button>
     </div>
 
-    <!-- 題目容器 -->
+    <!-- 單題推進容器 -->
     <div class="quiz-body" id="questionsContainer"></div>
   </section>
 
@@ -424,6 +511,10 @@
   let currentThemeMeta = null;
   let currentThemeData = null;
   let currentPart = 'partA';
+  
+  // 記錄單題進度
+  let currentIndex = 0;
+  let currentScore = 0;
 
   function navigateTo(screenId) {
     document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
@@ -443,12 +534,11 @@
   async function loadAndOpenTheme(themeId) {
     currentThemeMeta = themeList.find(t => t.id === themeId);
     document.getElementById('currentThemeTag').innerText = `主題 ${currentThemeMeta.id}`;
-    
     document.getElementById('scopeTitle').innerText = `適用主題：${currentThemeMeta.fullTheme}`;
     document.getElementById('scopeDetail').innerText = currentThemeMeta.scope;
     
     const container = document.getElementById('questionsContainer');
-    container.innerHTML = `<div class="loading-text">正在載入 ${currentThemeMeta.file}...</div>`;
+    container.innerHTML = `<div style="color:var(--text-muted); font-size:1.1rem;">載入題庫中...</div>`;
     navigateTo('screen-quiz');
 
     try {
@@ -457,16 +547,18 @@
       currentThemeData = await response.json();
       switchPart('partA', document.querySelector('.tab-btn'));
     } catch (err) {
-      container.innerHTML = `<div class="loading-text" style="color:var(--danger)">載入 ${currentThemeMeta.file} 失敗，請確認檔案是否存在於倉庫根目錄。</div>`;
+      container.innerHTML = `<div style="color:var(--danger)">載入 ${currentThemeMeta.file} 失敗，請確認檔案是否存在。</div>`;
       console.error(err);
     }
   }
 
   function switchPart(partKey, btn) {
     currentPart = partKey;
+    currentIndex = 0;
+    currentScore = 0;
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     if(btn) btn.classList.add('active');
-    renderQuestions();
+    renderCurrentQuestion();
   }
 
   function playAudio(text) {
@@ -479,83 +571,149 @@
     }
   }
 
-  function renderQuestions() {
+  // 渲染當前單一題目
+  function renderCurrentQuestion() {
     if (!currentThemeData) return;
     const container = document.getElementById('questionsContainer');
     const questions = currentThemeData[currentPart] || [];
 
-    if (questions.length === 0) {
-      container.innerHTML = `<p style="color:#A0AEC0; text-align:center; padding:30px;">該大題無題目</p>`;
+    // 若已作答完所有題目，顯示結算卡片
+    if (questions.length > 0 && currentIndex >= questions.length) {
+      const percentage = Math.round((currentScore / questions.length) * 100);
+      container.innerHTML = `
+        <div class="single-card result-card">
+          <h2>測驗完成！</h2>
+          <div class="result-score">${currentScore} / ${questions.length}</div>
+          <p style="color:var(--text-muted); margin-bottom:25px;">正確率：${percentage}%</p>
+          <div style="display:flex; gap:12px;">
+            <button class="btn-start" style="padding:10px 24px; font-size:1rem;" onclick="switchPart('${currentPart}', document.querySelector('.tab-btn.active'))">重新練習</button>
+            <button class="btn-start" style="padding:10px 24px; font-size:1rem;" onclick="navigateTo('screen-menu')">選擇其他單元</button>
+          </div>
+        </div>
+      `;
       return;
     }
 
+    if (questions.length === 0) {
+      container.innerHTML = `<p style="color:#A0AEC0;">此大題暫無題目</p>`;
+      return;
+    }
+
+    const q = questions[currentIndex];
+    const total = questions.length;
+    const progressPercent = ((currentIndex + 1) / total) * 100;
+
+    let cardContent = `
+      <div class="progress-bar-container">
+        <span>Question ${currentIndex + 1} / ${total}</span>
+        <div class="progress-track"><div class="progress-fill" style="width:${progressPercent}%"></div></div>
+      </div>
+    `;
+
     if (currentPart === 'partA') {
-      container.innerHTML = questions.map((q, idx) => `
-        <div class="question-card">
-          <div class="question-header">
-            ${idx + 1}. ${q.question || '請選出正確發音或選項'}
+      cardContent += `
+        <div class="single-card">
+          <div class="card-question-text">
+            ${q.question || '請選出正確答案'}
             ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
           </div>
-          <div class="options-group">
+          <div class="card-options">
             ${q.options.map(opt => `
-              <button class="option-btn" onclick="checkChoice(this, '${opt}', '${q.answer}')">${opt}</button>
+              <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
             `).join('')}
           </div>
         </div>
-      `).join('');
+      `;
     } else if (currentPart === 'partB') {
-      container.innerHTML = questions.map((q, idx) => `
-        <div class="question-card">
-          <div class="question-header">
-            ${idx + 1}. ${q.prompt} 
-            ${q.hint ? `<span style="color:#718096; font-size:0.9rem;">(${q.hint})</span>` : ''}
+      cardContent += `
+        <div class="single-card">
+          <div class="card-question-text">${q.prompt}</div>
+          ${q.hint ? `<div class="card-question-hint">提示：${q.hint}</div>` : ''}
+          <div class="fill-group">
+            <input type="text" class="input-fill" id="fillInput" placeholder="填寫字母" autocomplete="off" onkeydown="if(event.key==='Enter') handleFill('${q.answer}')">
+            <button class="btn-submit-fill" onclick="handleFill('${q.answer}')">檢查</button>
           </div>
-          <div style="display:flex; gap:10px; align-items:center;">
-            <input type="text" class="input-fill" placeholder="填寫字母" id="fill_${idx}">
-            <button class="option-btn" onclick="checkFill(${idx}, '${q.answer}')">檢查</button>
-            <span id="fill_res_${idx}" style="font-weight:bold; font-size:0.9rem;"></span>
-          </div>
+          <div id="fillFeedback" style="font-weight:bold; font-size:1.1rem; margin-top:15px; min-height:24px;"></div>
+          <button id="nextBtn" class="btn-next-action" style="display:none;" onclick="nextQuestion()">下一題 →</button>
         </div>
-      `).join('');
+      `;
     } else if (currentPart === 'partC') {
-      container.innerHTML = questions.map((q, idx) => `
-        <div class="question-card">
-          <div class="question-header">
-            ${idx + 1}. 仔細聽發音並選出正確單字：
+      cardContent += `
+        <div class="single-card">
+          <div class="card-question-text">
+            仔細聽發音：
             ${q.audioScript ? `<button class="btn-audio" onclick="playAudio('${q.audioScript}')">🔊</button>` : ''}
           </div>
-          <div class="options-group">
+          <div class="card-question-hint">點擊喇叭聆聽後選出單字</div>
+          <div class="card-options">
             ${q.options.map(opt => `
-              <button class="option-btn" onclick="checkChoice(this, '${opt}', '${q.answer}')">${opt}</button>
+              <button class="option-btn" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
             `).join('')}
           </div>
         </div>
-      `).join('');
+      `;
+    }
+
+    container.innerHTML = cardContent;
+
+    // 自動聚焦填空題輸入框
+    if (currentPart === 'partB') {
+      const input = document.getElementById('fillInput');
+      if (input) input.focus();
     }
   }
 
-  function checkChoice(btn, selected, correct) {
+  // 處理選擇題點選（自動跳題）
+  function handleChoice(btn, selected, correct) {
     const parent = btn.parentElement;
-    parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('correct', 'wrong'));
+    parent.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+
     if (selected === correct) {
       btn.classList.add('correct');
+      currentScore++;
     } else {
       btn.classList.add('wrong');
+      // 將正確選項標記出來
+      parent.querySelectorAll('.option-btn').forEach(b => {
+        if (b.innerText === correct) b.classList.add('correct');
+      });
     }
+
+    // 停留 0.8 秒後自動進入下一題
+    setTimeout(() => {
+      currentIndex++;
+      renderCurrentQuestion();
+    }, 850);
   }
 
-  function checkFill(idx, correct) {
-    const input = document.getElementById(`fill_${idx}`);
-    const res = document.getElementById(`fill_res_${idx}`);
+  // 處理填空題提交
+  function handleFill(correct) {
+    const input = document.getElementById('fillInput');
+    const feedback = document.getElementById('fillFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+    if (!input || input.disabled) return;
+
     const val = input.value.trim().toLowerCase();
     const expected = correct.trim().toLowerCase();
+
+    input.disabled = true;
+
     if (val === expected) {
-      res.style.color = 'var(--success)';
-      res.innerText = '✓ 正確';
+      feedback.style.color = 'var(--success)';
+      feedback.innerText = '✓ 答對了！';
+      currentScore++;
     } else {
-      res.style.color = 'var(--danger)';
-      res.innerText = `✗ 正解: ${correct}`;
+      feedback.style.color = 'var(--danger)';
+      feedback.innerText = `✗ 正確答案是: ${correct}`;
     }
+
+    nextBtn.style.display = 'inline-block';
+    nextBtn.focus();
+  }
+
+  function nextQuestion() {
+    currentIndex++;
+    renderCurrentQuestion();
   }
 
   initThemeGrid();
