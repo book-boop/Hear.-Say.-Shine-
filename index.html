@@ -76,7 +76,6 @@
       padding: 25px 0 15px 0;
     }
 
-    /* 中央集合容器：整合標題與雙層書本 */
     .hero-content {
       display: flex;
       flex-direction: column;
@@ -127,7 +126,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       width: 100%;
     }
 
@@ -135,10 +134,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 18px;
+      gap: 20px;
     }
 
-    .book-cover {
+    /* 上排 FUN 書本專用樣式 (保留書本直向比例) */
+    .fun-book {
       width: 115px;
       height: 162px;
       border-radius: 8px;
@@ -149,18 +149,35 @@
       background-color: #fff;
     }
 
-    /* 上排 3 本 FUN：微幅立體角度 */
-    .fun-row .book-cover:nth-child(1) { transform: rotate(-5deg); }
-    .fun-row .book-cover:nth-child(2) { transform: rotate(0deg) translateY(-4px); }
-    .fun-row .book-cover:nth-child(3) { transform: rotate(5deg); }
+    .fun-row .fun-book:nth-child(1) { transform: rotate(-5deg); }
+    .fun-row .fun-book:nth-child(2) { transform: rotate(0deg) translateY(-4px); }
+    .fun-row .fun-book:nth-child(3) { transform: rotate(5deg); }
 
-    /* 下排 2 本 GO：對稱微旋轉 */
-    .go-row .book-cover:nth-child(1) { transform: rotate(-4deg); }
-    .go-row .book-cover:nth-child(2) { transform: rotate(4deg); }
-
-    .book-cover:hover {
+    .fun-book:hover {
       transform: translateY(-10px) scale(1.08) rotate(0deg) !important;
       box-shadow: 0 16px 30px rgba(30, 64, 110, 0.3);
+      z-index: 5;
+    }
+
+    /* 下排 GO 圖片專用樣式：自適應原始形狀、不強加直向裁切 */
+    .go-img {
+      max-width: 140px;
+      max-height: 110px;
+      width: auto;
+      height: auto;
+      object-fit: contain; /* 完整保留原圖形狀，不拉伸也不裁切 */
+      border-radius: 8px;
+      filter: drop-shadow(0 8px 16px rgba(30, 64, 110, 0.16));
+      transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      cursor: pointer;
+    }
+
+    .go-row .go-img:nth-child(1) { transform: rotate(-3deg); }
+    .go-row .go-img:nth-child(2) { transform: rotate(3deg); }
+
+    .go-img:hover {
+      transform: translateY(-8px) scale(1.08) rotate(0deg) !important;
+      filter: drop-shadow(0 14px 22px rgba(30, 64, 110, 0.25));
       z-index: 5;
     }
 
@@ -503,9 +520,10 @@
       }
       .curved-header { margin-bottom: 16px; }
       .curved-header h1 { font-size: 1.5rem; }
-      .books-display { gap: 10px; }
+      .books-display { gap: 12px; }
       .books-row { gap: 10px; }
-      .book-cover { width: 78px; height: 110px; }
+      .fun-book { width: 78px; height: 110px; }
+      .go-img { max-width: 95px; max-height: 75px; }
       .theme-grid { gap: 14px 10px; }
       .circle-theme-btn { width: 85px; height: 85px; font-size: 0.72rem; }
       .single-card { padding: 18px 12px; }
@@ -529,13 +547,13 @@
       <!-- 書本展示區：上排 3 本 FUN，下排 2 本 GO -->
       <div class="books-display">
         <div class="books-row fun-row">
-          <img src="./images/Phonics Fun 1.png" alt="Phonics Fun 1" class="book-cover">
-          <img src="./images/Phonics Fun 2.png" alt="Phonics Fun 2" class="book-cover">
-          <img src="./images/Phonics Fun 3.png" alt="Phonics Fun 3" class="book-cover">
+          <img src="./images/Phonics Fun 1.png" alt="Phonics Fun 1" class="fun-book">
+          <img src="./images/Phonics Fun 2.png" alt="Phonics Fun 2" class="fun-book">
+          <img src="./images/Phonics Fun 3.png" alt="Phonics Fun 3" class="fun-book">
         </div>
         <div class="books-row go-row">
-          <img src="./images/Phonics GO 1.png" alt="Phonics GO 1" class="book-cover">
-          <img src="./images/Phonics GO 2.png" alt="Phonics GO 2" class="book-cover">
+          <img src="./images/Phonics GO 1.png" alt="Phonics GO 1" class="go-img">
+          <img src="./images/Phonics GO 2.png" alt="Phonics GO 2" class="go-img">
         </div>
       </div>
     </div>
@@ -743,9 +761,6 @@
     renderCurrentQuestion();
   }
 
-  /* -------------------------------------------------------------
-     語音發音核心：智慧淨化與標準美語發音引擎 (徹底排除雜音與怪字)
-  ------------------------------------------------------------- */
   function cleanTextForSpeech(raw) {
     if (!raw) return "";
     let str = String(raw).trim();
