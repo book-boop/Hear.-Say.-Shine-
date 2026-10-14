@@ -72,12 +72,22 @@
     /* 扉頁佈局 */
     #screen-cover {
       justify-content: space-between;
-      padding: 20px 0;
+      align-items: center;
+      padding: 25px 0 15px 0;
+    }
+
+    /* 中央集合容器：整合標題與雙層書本 */
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: auto 0;
+      width: 100%;
     }
 
     .curved-header { 
       text-align: center; 
-      margin-bottom: 15px; 
+      margin-bottom: 22px; 
       position: relative; 
       width: 100%; 
     }
@@ -112,41 +122,51 @@
       margin: -6px auto 10px auto;
     }
 
-    /* 五本書彩虹拱形 */
-    .books-container {
+    /* 書本展示區：雙排層次佈局 */
+    .books-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .books-row {
       display: flex;
       justify-content: center;
-      align-items: flex-end;
-      gap: 14px;
-      margin: 60px auto 40px auto;
-      width: 100%;
-      height: 220px;
-      padding-bottom: 20px;
+      align-items: center;
+      gap: 18px;
     }
+
     .book-cover {
-      width: 110px;
-      height: 155px;
+      width: 115px;
+      height: 162px;
       border-radius: 8px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 10px 22px rgba(30, 64, 110, 0.18);
       transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
       cursor: pointer;
       object-fit: cover;
       background-color: #fff;
     }
-    .book-cover:nth-child(1) { transform: translateY(22px) rotate(-14deg); }
-    .book-cover:nth-child(2) { transform: translateY(6px) rotate(-7deg); }
-    .book-cover:nth-child(3) { transform: translateY(-8px) rotate(0deg); z-index: 2; }
-    .book-cover:nth-child(4) { transform: translateY(6px) rotate(7deg); }
-    .book-cover:nth-child(5) { transform: translateY(22px) rotate(14deg); }
+
+    /* 上排 3 本 FUN：微幅立體角度 */
+    .fun-row .book-cover:nth-child(1) { transform: rotate(-5deg); }
+    .fun-row .book-cover:nth-child(2) { transform: rotate(0deg) translateY(-4px); }
+    .fun-row .book-cover:nth-child(3) { transform: rotate(5deg); }
+
+    /* 下排 2 本 GO：對稱微旋轉 */
+    .go-row .book-cover:nth-child(1) { transform: rotate(-4deg); }
+    .go-row .book-cover:nth-child(2) { transform: rotate(4deg); }
+
     .book-cover:hover {
-      transform: translateY(-16px) scale(1.12) rotate(0deg) !important;
-      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25);
-      z-index: 10;
+      transform: translateY(-10px) scale(1.08) rotate(0deg) !important;
+      box-shadow: 0 16px 30px rgba(30, 64, 110, 0.3);
+      z-index: 5;
     }
 
     .btn-start {
       margin-top: 0;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       padding: 12px 50px;
       font-size: 1.25rem;
       font-weight: bold;
@@ -233,6 +253,7 @@
       font-size: 0.92rem;
       transition: all 0.2s ease;
       box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+      cursor: pointer;
     }
     #screen-menu .back-btn:hover {
       background: #FFFFFF;
@@ -472,7 +493,7 @@
       transform: scale(1.08);
     }
 
-    /* RWD 手機版最適配 */
+    /* 手機螢幕響應式排版 */
     @media (max-width: 680px) {
       .app-container {
         margin: 0;
@@ -480,13 +501,11 @@
         border-radius: 0;
         padding: 20px 14px;
       }
-      .curved-header h1 { font-size: 1.6rem; }
-      .books-container {
-        height: 160px;
-        margin: 25px auto 20px auto;
-        gap: 6px;
-      }
-      .book-cover { width: 58px; height: 82px; }
+      .curved-header { margin-bottom: 16px; }
+      .curved-header h1 { font-size: 1.5rem; }
+      .books-display { gap: 10px; }
+      .books-row { gap: 10px; }
+      .book-cover { width: 78px; height: 110px; }
       .theme-grid { gap: 14px 10px; }
       .circle-theme-btn { width: 85px; height: 85px; font-size: 0.72rem; }
       .single-card { padding: 18px 12px; }
@@ -499,20 +518,29 @@
 
   <!-- 1. 扉頁 (首頁) -->
   <section id="screen-cover" class="view-screen active">
-    <div class="curved-header">
-      <h1>Hear. Say. Shine!</h1>
-      <div class="header-curve-line"></div>
+    
+    <div class="hero-content">
+      <!-- 弧形標題 (緊鄰書本上方) -->
+      <div class="curved-header">
+        <h1>Hear. Say. Shine!</h1>
+        <div class="header-curve-line"></div>
+      </div>
+
+      <!-- 書本展示區：上排 3 本 FUN，下排 2 本 GO -->
+      <div class="books-display">
+        <div class="books-row fun-row">
+          <img src="./images/Phonics Fun 1.png" alt="Phonics Fun 1" class="book-cover">
+          <img src="./images/Phonics Fun 2.png" alt="Phonics Fun 2" class="book-cover">
+          <img src="./images/Phonics Fun 3.png" alt="Phonics Fun 3" class="book-cover">
+        </div>
+        <div class="books-row go-row">
+          <img src="./images/Phonics GO 1.png" alt="Phonics GO 1" class="book-cover">
+          <img src="./images/Phonics GO 2.png" alt="Phonics GO 2" class="book-cover">
+        </div>
+      </div>
     </div>
 
-    <!-- 五本書彩虹拱形展示區 -->
-    <div class="books-container">
-      <img src="./images/Phonics Fun 1.png" alt="Phonics Fun 1" class="book-cover">
-      <img src="./images/Phonics Fun 2.png" alt="Phonics Fun 2" class="book-cover">
-      <img src="./images/Phonics Fun 3.png" alt="Phonics Fun 3" class="book-cover">
-      <img src="./images/Phonics GO 1.png" alt="Phonics GO 1" class="book-cover">
-      <img src="./images/Phonics GO 2.png" alt="Phonics GO 2" class="book-cover">
-    </div>
-
+    <!-- START 按鈕 -->
     <button class="btn-start" onclick="navigateTo('screen-menu')">START</button>
   </section>
 
@@ -715,39 +743,66 @@
     renderCurrentQuestion();
   }
 
-  // 高精確度美式英語發音合成核心
+  /* -------------------------------------------------------------
+     語音發音核心：智慧淨化與標準美語發音引擎 (徹底排除雜音與怪字)
+  ------------------------------------------------------------- */
+  function cleanTextForSpeech(raw) {
+    if (!raw) return "";
+    let str = String(raw).trim();
+
+    if (str.includes('/')) {
+      if (str.includes(',')) {
+        const parts = str.split(',');
+        str = parts[parts.length - 1];
+      }
+      str = str.replace(/[\/\[\]()]/g, '').trim();
+    }
+
+    str = str.replace(/_+/g, '').trim();
+    str = str.replace(/^-+|-+$/g, '').trim();
+
+    return str;
+  }
+
+  function getSpokenWord(q) {
+    if (q.fullWord) return cleanTextForSpeech(q.fullWord);
+
+    if (currentPart === 'partC' && q.answer) {
+      return cleanTextForSpeech(q.answer);
+    }
+
+    if (q.speakText) return cleanTextForSpeech(q.speakText);
+    if (q.audioScript) return cleanTextForSpeech(q.audioScript);
+
+    if (currentPart === 'partB') return "";
+
+    if (q.question) return cleanTextForSpeech(q.question);
+    if (q.answer) return cleanTextForSpeech(q.answer);
+
+    return "";
+  }
+
   function playAccurateSpeech(text) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
 
-    // 智能轉換：若傳入的是音標或複合字串（如 /æ/, /æ/, ax），自動萃取純英語單字 ax 以確保發音無誤
-    let cleanWord = text;
-    if (text.includes('/')) {
-      const parts = text.split(',');
-      cleanWord = parts[parts.length - 1].replace(/\//g, '').trim();
-    }
+    const wordToSpeak = cleanTextForSpeech(text);
+    if (!wordToSpeak) return;
 
-    const utterance = new SpeechSynthesisUtterance(cleanWord);
+    const utterance = new SpeechSynthesisUtterance(wordToSpeak);
     utterance.lang = 'en-US';
-    utterance.rate = 0.8; // 稍微調慢，讓學生聽得清楚
+    utterance.rate = 0.82;
     utterance.pitch = 1.0;
 
-    // 挑選最佳美式英語真人語音包（避免機械式預設腔調）
     const voices = window.speechSynthesis.getVoices();
-    const usVoice = voices.find(v => v.lang === 'en-US' && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+    const usVoice = voices.find(v => 
+      v.lang === 'en-US' && 
+      (v.name.includes('Natural') || v.name.includes('Google US') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Ava'))
+    ) || voices.find(v => v.lang === 'en-US');
+
     if (usVoice) utterance.voice = usVoice;
 
     window.speechSynthesis.speak(utterance);
-  }
-
-  // 取得當前題目專用的朗讀文字
-  function getSpokenWord(q) {
-    if (q.speakText) return q.speakText;
-    if (q.audioScript) return q.audioScript;
-    if (q.question) return q.question;
-    if (q.fullWord) return q.fullWord;
-    if (q.answer) return q.answer;
-    return "";
   }
 
   function renderCurrentQuestion() {
@@ -801,7 +856,7 @@
       cardContent += `
         <div class="card-question-text">
           ${q.question || '請聽發音選出答案'}
-          <button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>
+          ${spokenText ? `<button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>` : ''}
         </div>
         <div class="card-options">
           ${q.options.map(opt => `
@@ -841,9 +896,8 @@
     cardContent += `</div>`;
     container.innerHTML = cardContent;
 
-    // 若需要，進入題目時可自動播放一次
     if (spokenText && currentPart === 'partC') {
-      setTimeout(() => playAccurateSpeech(spokenText), 200);
+      setTimeout(() => playAccurateSpeech(spokenText), 250);
     }
 
     if (currentPart === 'partB') {
@@ -901,7 +955,6 @@
     renderCurrentQuestion();
   }
 
-  // 確保瀏覽器語音列表載入完成
   if ('speechSynthesis' in window) {
     window.speechSynthesis.onvoiceschanged = () => {
       window.speechSynthesis.getVoices();
