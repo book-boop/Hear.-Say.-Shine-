@@ -19,18 +19,18 @@
     { "id": 15, "question": "enjoy", "options": ["1 syllable", "2 syllables", "3 syllables"], "answer": "2 syllables" }
   ],
   "partB": [
-    { "id": 1, "prompt": "sandwi _ _ _", "hint": "三明治/複數", "answer": "ches", "fullWord": "sandwiches" },
-    { "id": 2, "prompt": "smi _ _ _", "hint": "微笑/過去式", "answer": "led", "fullWord": "smiled" },
-    { "id": 3, "prompt": "cup _", "hint": "杯子/複數", "answer": "s", "fullWord": "cups" },
-    { "id": 4, "prompt": "wash _ _", "hint": "洗/過去式", "answer": "ed", "fullWord": "washed" },
-    { "id": 5, "prompt": "paint _ _", "hint": "繪畫/過去式", "answer": "ed", "fullWord": "painted" },
-    { "id": 6, "prompt": "dish _ _", "hint": "盤子/複數", "answer": "es", "fullWord": "dishes" },
-    { "id": 7, "prompt": "play _ _", "hint": "玩/過去式", "answer": "ed", "fullWord": "played" },
-    { "id": 8, "prompt": "pear _", "hint": "西洋梨/複數", "answer": "s", "fullWord": "pears" },
-    { "id": 9, "prompt": "drop _ _ _", "hint": "掉落/過去式", "answer": "ped", "fullWord": "dropped" },
-    { "id": 10, "prompt": "shout _ _", "hint": "大叫/過去式", "answer": "ed", "fullWord": "shouted" },
-    { "id": 11, "prompt": "spoon _", "hint": "湯匙/複數", "answer": "s", "fullWord": "spoons" },
-    { "id": 12, "prompt": "fork _", "hint": "叉子/複數", "answer": "s", "fullWord": "forks" }
+    { "id": 1, "prompt": "sandwi _ _ _", "hint": "三明治", "answer": "ches", "fullWord": "sandwiches", "image": "./images/sandwiches.png" },
+    { "id": 2, "prompt": "smi _ _ _", "hint": "微笑", "answer": "led", "fullWord": "smiled", "image": "./images/smiled.png" },
+    { "id": 3, "prompt": "cup _", "hint": "杯子", "answer": "s", "fullWord": "cups", "image": "./images/cups.png" },
+    { "id": 4, "prompt": "wash _ _", "hint": "洗", "answer": "ed", "fullWord": "washed", "image": "./images/washed.png" },
+    { "id": 5, "prompt": "paint _ _", "hint": "繪畫", "answer": "ed", "fullWord": "painted", "image": "./images/painted.png" },
+    { "id": 6, "prompt": "dish _ _", "hint": "盤子", "answer": "es", "fullWord": "dishes", "image": "./images/dishes.png" },
+    { "id": 7, "prompt": "play _ _", "hint": "玩", "answer": "ed", "fullWord": "played", "image": "./images/played.png" },
+    { "id": 8, "prompt": "pear _", "hint": "西洋梨", "answer": "s", "fullWord": "pears", "image": "./images/pears.png" },
+    { "id": 9, "prompt": "drop _ _ _", "hint": "掉落", "answer": "ped", "fullWord": "dropped", "image": "./images/dropped.png" },
+    { "id": 10, "prompt": "shout _ _", "hint": "大叫", "answer": "ed", "fullWord": "shouted", "image": "./images/shouted.png" },
+    { "id": 11, "prompt": "spoon _", "hint": "湯匙", "answer": "s", "fullWord": "spoons", "image": "./images/spoons.png" },
+    { "id": 12, "prompt": "fork _", "hint": "叉子", "answer": "s", "fullWord": "forks", "image": "./images/forks.png" }
   ],
   "partC": [
     { "id": 1, "audioScript": "played", "options": ["played", "play"], "answer": "played" },

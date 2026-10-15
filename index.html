@@ -85,7 +85,6 @@
       width: 100%;
     }
 
-    /* 標題放大 */
     .curved-header { 
       text-align: center; 
       margin-bottom: 28px; 
@@ -123,14 +122,13 @@
       margin: -6px auto 0 auto;
     }
 
-    /* 書本展示區放大滿版 */
     .books-display {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 24px;
       width: 100%;
-      margin-bottom: 34px; /* 與下方 START 按鈕保持舒適間距 */
+      margin-bottom: 34px;
     }
 
     .books-row {
@@ -140,7 +138,6 @@
       gap: 28px;
     }
 
-    /* 上排 3 本 FUN 放大 */
     .fun-book {
       width: 170px;
       height: 240px;
@@ -162,7 +159,6 @@
       z-index: 5;
     }
 
-    /* 下排 2 張 GO 圖片放大並維持原圖形狀 */
     .go-img {
       max-width: 215px;
       max-height: 150px;
@@ -184,7 +180,6 @@
       z-index: 5;
     }
 
-    /* START 按鈕放大並緊隨圖片下方 */
     .btn-start {
       padding: 15px 68px;
       font-size: 1.5rem;
@@ -207,13 +202,13 @@
     }
 
     /* =========================================
-       2. 主題目錄頁：標題、圓圈與返回按鈕緊湊置中
+       2. 主題目錄頁
        ========================================= */
     #screen-menu {
       justify-content: center;
       align-items: center;
       padding: 20px 0;
-      gap: 28px; /* 讓標題、9宮格、返回按鈕緊密置中相連 */
+      gap: 28px;
     }
     #screen-menu .curved-header {
       margin-bottom: 0;
@@ -290,7 +285,7 @@
     }
 
     /* =========================================
-       3. 答題畫面：緊湊無底部多餘留白 + 底線樣式
+       3. 答題畫面
        ========================================= */
     #screen-quiz {
       justify-content: flex-start;
@@ -389,7 +384,7 @@
       border: 1.5px solid #F6E05E;
       border-radius: 8px;
       padding: 10px 15px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       font-size: 0.95rem;
       font-weight: 600;
       color: #744210;
@@ -405,7 +400,7 @@
       background: #FFFFFF;
       border: 1.5px solid #E2E8F0;
       border-radius: 16px;
-      padding: 25px 20px 30px 20px;
+      padding: 22px 20px 28px 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.04);
       display: flex;
       flex-direction: column;
@@ -419,11 +414,23 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Part B 題目提示圖片顯示區 */
+    .card-hint-image {
+      width: 130px;
+      height: 130px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      background: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      padding: 6px;
+    }
+
     .card-question-text {
       font-size: 1.7rem;
       font-weight: bold;
       color: #1A202C;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 12px;
@@ -432,10 +439,9 @@
     .card-question-hint {
       font-size: 1.05rem;
       color: #718096;
-      margin-bottom: 22px;
+      margin-bottom: 18px;
     }
 
-    /* U1 Part A 專用的目標發音字母底線樣式 */
     .phonics-underline {
       text-decoration: underline;
       text-decoration-thickness: 3.5px;
@@ -509,7 +515,7 @@
       cursor: pointer;
     }
     .btn-next-action {
-      margin-top: 25px;
+      margin-top: 22px;
       padding: 10px 30px;
       font-size: 1.1rem;
       background: #2D3748;
@@ -538,7 +544,6 @@
       transform: scale(1.08);
     }
 
-    /* 手機螢幕響應式排版 */
     @media (max-width: 680px) {
       body { padding: 0; }
       .app-container {
@@ -569,13 +574,11 @@
   <!-- 1. 扉頁 (首頁) -->
   <section id="screen-cover" class="view-screen active">
     <div class="hero-content">
-      <!-- 弧形標題 -->
       <div class="curved-header">
         <h1>Hear. Say. Shine!</h1>
         <div class="header-curve-line"></div>
       </div>
 
-      <!-- 書本展示區：上排 3 本 FUN，下排 2 本 GO -->
       <div class="books-display">
         <div class="books-row fun-row">
           <img src="./images/Phonics Fun 1.png" alt="Phonics Fun 1" class="fun-book">
@@ -588,12 +591,11 @@
         </div>
       </div>
 
-      <!-- START 按鈕緊鄰圖片正下方 -->
       <button class="btn-start" onclick="navigateTo('screen-menu')">START</button>
     </div>
   </section>
 
-  <!-- 2. 主題選單頁 (9大主題 3x3 圓圈) -->
+  <!-- 2. 主題選單頁 -->
   <section id="screen-menu" class="view-screen">
     <div class="curved-header">
       <h1>Hear. Say. Shine!</h1>
@@ -629,115 +631,51 @@
 </div>
 
 <script>
-  // 9 大主題配置與原檔所有題型說明
   const themeList = [
     { 
-      id: 1, 
-      file: "theme01.json", 
-      name: "Alphabets & Sounds", 
-      fullTheme: "Alphabets and Letter Sounds", 
+      id: 1, file: "theme01.json", name: "Alphabets & Sounds", fullTheme: "Alphabets and Letter Sounds", 
       scope: "26個字母\nPhonics FUN Book 1 U1-10\nPhonics GO Book 1 U1-8",
-      instructions: {
-        partA: "Part A: 選出與底線發音相同的選項。",
-        partB: "Part B: 根據空格提示，填入正確的字母。",
-        partC: "Part C: 仔細聽發音與單字，選出正確的單字。"
-      }
+      instructions: { partA: "Part A: 選出與底線發音相同的選項。", partB: "Part B: 根據空格提示，填入正確的字母。", partC: "Part C: 仔細聽發音與單字，選出正確的單字。" }
     },
     { 
-      id: 2, 
-      file: "theme02.json", 
-      name: "Short Vowels", 
-      fullTheme: "Short Vowels", 
+      id: 2, file: "theme02.json", name: "Short Vowels", fullTheme: "Short Vowels", 
       scope: "Short Vowels (a, e, i, o, u)\nPhonics FUN Book 1 U13-17\nPhonics GO Book 1 U9-13",
-      instructions: {
-        partA: "Part A: 圈出母音發音不同的單字（請選出母音發音與其他兩者不同者）。",
-        partB: "Part B: 聽單字，看圖並填入正確的短母音字母。",
-        partC: "Part C: 聽音辨字。"
-      }
+      instructions: { partA: "Part A: 圈出母音發音不同的單字（請選出母音發音與其他兩者不同者）。", partB: "Part B: 聽單字，看圖並填入正確的短母音字母。", partC: "Part C: 聽音辨字。" }
     },
     { 
-      id: 3, 
-      file: "theme03.json", 
-      name: "Long Vowels", 
-      fullTheme: "Long Vowels", 
+      id: 3, file: "theme03.json", name: "Long Vowels", fullTheme: "Long Vowels", 
       scope: "Long Vowels\nPhonics FUN Book 1 U18-19, Book 2 U1-10\nPhonics GO Book 1 U18-19, Book 2 U1-5",
-      instructions: {
-        partA: "Part A: 請圈出與題目「母音發音相同」的選項。",
-        partB: "Part B: 填入正確的長母音組合字母（如：a_e, ai, ay, i_e, igh, o_e, oa, ow, u_e, ue, ui, ee, ea）。",
-        partC: "Part C: 聽音辨字。"
-      }
+      instructions: { partA: "Part A: 請圈出與題目「母音發音相同」的選項。", partB: "Part B: 填入正確的長母音組合字母。", partC: "Part C: 聽音辨字。" }
     },
     { 
-      id: 4, 
-      file: "theme04.json", 
-      name: "More Vowels", 
-      fullTheme: "More Vowels", 
-      scope: "Diphthongs: oi, oy, ou, ow, oo\nVowel Digraphs: au, aw, al\nGlued Sounds: oll, ull\nPhonics FUN Book 2 U12-14\nPhonics GO Book 2 U12-15",
-      instructions: {
-        partA: "Part A: 圈出母音發音相同的單字。",
-        partB: "Part B: 填入正確的組合字母（如：oi, oy, ou, ow, oo, au, aw, al, oll, ull）。",
-        partC: "Part C: 聽音辨字。"
-      }
+      id: 4, file: "theme04.json", name: "More Vowels", fullTheme: "More Vowels", 
+      scope: "Diphthongs: oi, oy, ou, ow, oo\nVowel Digraphs: au, aw, al\nGlued Sounds: oll, ull",
+      instructions: { partA: "Part A: 圈出母音發音相同的單字。", partB: "Part B: 填入正確的組合字母。", partC: "Part C: 聽音辨字。" }
     },
     { 
-      id: 5, 
-      file: "theme05.json", 
-      name: "R-Controlled", 
-      fullTheme: "R-Controlled Vowels", 
-      scope: "ar, or, war, wor, ir, er, ur\nPhonics FUN Book 2 U15-16\nPhonics GO Book 2 U10-11",
-      instructions: {
-        partA: "Part A: 圈出母音發音相同的單字。",
-        partB: "Part B: 聽單字，看圖並填入正確的母音組合字母（如：ar, or, er, ir, ur）。",
-        partC: "Part C: 聽音辨字。"
-      }
+      id: 5, file: "theme05.json", name: "R-Controlled", fullTheme: "R-Controlled Vowels", 
+      scope: "ar, or, war, wor, ir, er, ur",
+      instructions: { partA: "Part A: 圈出母音發音相同的單字。", partB: "Part B: 聽單字，看圖並填入正確的母音組合字母。", partC: "Part C: 聽音辨字。" }
     },
     { 
-      id: 6, 
-      file: "theme06.json", 
-      name: "Blends", 
-      fullTheme: "L, R, S Blends", 
-      scope: "Blends\nPhonics FUN Book 2 U17, Book 3 U11-12, 15\nPhonics GO Book 1 U14-17",
-      instructions: {
-        partA: "Part A: 仔細聽，選出該單字正確的子音群（Blend）組合。",
-        partB: "Part B: 根據空格提示，填入正確的子音群組合字母（如：bl, cl, fl, gr, sm, sk 等）。",
-        partC: "Part C: 仔細聽發音與單字，選出正確的單字。"
-      }
+      id: 6, file: "theme06.json", name: "Blends", fullTheme: "L, R, S Blends", 
+      scope: "Blends",
+      instructions: { partA: "Part A: 仔細聽，選出該單字正確的子音群（Blend）組合。", partB: "Part B: 根據空格提示，填入正確的子音群組合字母。", partC: "Part C: 仔細聽發音與單字，選出正確的單字。" }
     },
     { 
-      id: 7, 
-      file: "theme07.json", 
-      name: "Digraphs", 
-      fullTheme: "Consonant Digraphs", 
-      scope: "sh, ch, tch, th, gh, wh, ph\nPhonics FUN Book 2 U18-19, Book 3 U7-8\nPhonics GO Book 2 U6-9",
-      instructions: {
-        partA: "Part A: 選出該單字包含的複合子音（Digraph）組合。",
-        partB: "Part B: 聽單字，看圖並填入正確的複合子音字母組合（如：sh, ch, tch, th, gh, wh, ph）。",
-        partC: "Part C: 聽音辨字。"
-      }
+      id: 7, file: "theme07.json", name: "Digraphs", fullTheme: "Consonant Digraphs", 
+      scope: "sh, ch, tch, th, gh, wh, ph",
+      instructions: { partA: "Part A: 選出該單字包含的複合子音（Digraph）組合。", partB: "Part B: 聽單字，看圖並填入正確的複合子音字母組合。", partC: "Part C: 聽音辨字。" }
     },
     { 
-      id: 8, 
-      file: "theme08.json", 
-      name: "Special Consonants", 
-      fullTheme: "Special Consonants", 
-      scope: "Special Consonants (ck, kn, wr, -mb, -mn, -nd...)\nPhonics FUN Book 3 U8, 9, 13-16\nPhonics GO Book 2 U16-19",
-      instructions: {
-        partA: "Part A: 選出該單字包含的字首或字尾子音。",
-        partB: "Part B: 聽單字，看圖並填入正確的組合字母（如：kn-, wr-, -mb, -ng, -nk 等）。",
-        partC: "Part C: 聽音辨字。"
-      }
+      id: 8, file: "theme08.json", name: "Special Consonants", fullTheme: "Special Consonants", 
+      scope: "Special Consonants",
+      instructions: { partA: "Part A: 選出該單字包含的字首或字尾子音。", partB: "Part B: 聽單字，看圖並填入正確的組合字母。", partC: "Part C: 聽音辨字。" }
     },
     { 
-      id: 9, 
-      file: "theme09.json", 
-      name: "Endings & Stress", 
-      fullTheme: "Endings, Syllables, Stress", 
-      scope: "-s/-es, -ed, 1~3 syllables\nPhonics FUN Book 3 U17-19",
-      instructions: {
-        partA: "Part A: 仔細聽，並選出該單字正確的字尾發音或音節數。",
-        partB: "Part B: 聽單字，看圖並填入正確的字尾變化（-s, -es, 或 -ed）。",
-        partC: "Part C: 聽音辨字。"
-      }
+      id: 9, file: "theme09.json", name: "Endings & Stress", fullTheme: "Endings, Syllables, Stress", 
+      scope: "-s/-es, -ed, 1~3 syllables",
+      instructions: { partA: "Part A: 仔細聽，並選出該單字正確的字尾發音或音節數。", partB: "Part B: 聽單字，看圖並填入正確的字尾變化。", partC: "Part C: 聽音辨字。" }
     }
   ];
 
@@ -792,38 +730,24 @@
     renderCurrentQuestion();
   }
 
-  /* -------------------------------------------------------------
-     U1 Part A 智慧底線標記器：自動為題目與選項畫出目標發音底線
-  ------------------------------------------------------------- */
   function formatU1Underline(word, questionWord) {
     if (!word) return "";
-    // 若原字串已含 HTML 底線標籤則直接回傳
     if (word.includes('<u>') || word.includes('<span')) return word;
-
     const cleanW = word.trim();
     const cleanQ = (questionWord || "").replace(/<[^>]*>/g, '').trim().toLowerCase();
 
-    // 若題目為字尾 x 發音 (例如 box, fox, six, ax, ox)，針對字尾標註底線
     if (cleanQ.endsWith('x') && cleanW.length >= 2) {
       if (cleanW.toLowerCase().endsWith('x')) {
         return cleanW.slice(0, -1) + `<span class="phonics-underline">${cleanW.slice(-1)}</span>`;
       }
-      // 該題干擾選項若為字尾子音對比，或預設標示字尾/字首
       return `<span class="phonics-underline">${cleanW.charAt(0)}</span>` + cleanW.slice(1);
     }
-
-    // 一般字母發音題：為單字字首第 1 個字母加上明顯底線
     return `<span class="phonics-underline">${cleanW.charAt(0)}</span>` + cleanW.slice(1);
   }
 
-  /* -------------------------------------------------------------
-     語音發音核心：濾除 HTML 標籤、音標符號與底線
-  ------------------------------------------------------------- */
   function cleanTextForSpeech(raw) {
     if (!raw) return "";
-    // 先移除任何 HTML 標籤（如底線 span）
     let str = String(raw).replace(/<[^>]*>/g, '').trim();
-
     if (str.includes('/')) {
       if (str.includes(',')) {
         const parts = str.split(',');
@@ -831,35 +755,25 @@
       }
       str = str.replace(/[\/\[\]()]/g, '').trim();
     }
-
     str = str.replace(/_+/g, '').trim();
     str = str.replace(/^-+|-+$/g, '').trim();
-
     return str;
   }
 
   function getSpokenWord(q) {
     if (q.fullWord) return cleanTextForSpeech(q.fullWord);
-
-    if (currentPart === 'partC' && q.answer) {
-      return cleanTextForSpeech(q.answer);
-    }
-
+    if (currentPart === 'partC' && q.answer) return cleanTextForSpeech(q.answer);
     if (q.speakText) return cleanTextForSpeech(q.speakText);
     if (q.audioScript) return cleanTextForSpeech(q.audioScript);
-
     if (currentPart === 'partB') return "";
-
     if (q.question) return cleanTextForSpeech(q.question);
     if (q.answer) return cleanTextForSpeech(q.answer);
-
     return "";
   }
 
   function playAccurateSpeech(text) {
     if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
-
     const wordToSpeak = cleanTextForSpeech(text);
     if (!wordToSpeak) return;
 
@@ -875,7 +789,6 @@
     ) || voices.find(v => v.lang === 'en-US');
 
     if (usVoice) utterance.voice = usVoice;
-
     window.speechSynthesis.speak(utterance);
   }
 
@@ -945,7 +858,10 @@
         </div>
       `;
     } else if (currentPart === 'partB') {
+      // 支援動態載入 JSON 裡的圖片，若無則預設抓 ./images/單字.png
+      const imageUrl = q.image || `./images/${q.fullWord}.png`;
       cardContent += `
+        <img src="${imageUrl}" alt="${q.fullWord || 'hint'}" class="card-hint-image" onerror="this.style.display='none'">
         <div class="card-question-text">
           <span>${q.prompt}</span>
           ${spokenText ? `<button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>` : ''}
