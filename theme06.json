@@ -1,0 +1,404 @@
+{
+  "themeId": 6,
+  "themeTitle": "L, R, S Blends",
+  "partA": [
+    {
+      "id": 1,
+      "audioScript": "/bl/, /bl/, black",
+      "options": [
+        "bl",
+        "br",
+        "cl"
+      ],
+      "answer": "bl"
+    },
+    {
+      "id": 2,
+      "audioScript": "/fl/, /fl/, flower",
+      "options": [
+        "fr",
+        "fl",
+        "pl"
+      ],
+      "answer": "fl"
+    },
+    {
+      "id": 3,
+      "audioScript": "/cl/, /cl/, clown",
+      "options": [
+        "cr",
+        "dr",
+        "cl"
+      ],
+      "answer": "cl"
+    },
+    {
+      "id": 4,
+      "audioScript": "/gl/, /gl/, globe",
+      "options": [
+        "gr",
+        "gl",
+        "tr"
+      ],
+      "answer": "gl"
+    },
+    {
+      "id": 5,
+      "audioScript": "/pr/, /pr/, press",
+      "options": [
+        "pl",
+        "pr",
+        "br"
+      ],
+      "answer": "pr"
+    },
+    {
+      "id": 6,
+      "audioScript": "/dr/, /dr/, dress",
+      "options": [
+        "tr",
+        "dr",
+        "fr"
+      ],
+      "answer": "dr"
+    },
+    {
+      "id": 7,
+      "audioScript": "/cr/, /cr/, crab",
+      "options": [
+        "cl",
+        "gr",
+        "cr"
+      ],
+      "answer": "cr"
+    },
+    {
+      "id": 8,
+      "audioScript": "/fr/, /fr/, frog",
+      "options": [
+        "fl",
+        "fr",
+        "sl"
+      ],
+      "answer": "fr"
+    },
+    {
+      "id": 9,
+      "audioScript": "/gr/, /gr/, green",
+      "options": [
+        "gl",
+        "gr",
+        "br"
+      ],
+      "answer": "gr"
+    },
+    {
+      "id": 10,
+      "audioScript": "/tr/, /tr/, truck",
+      "options": [
+        "pr",
+        "pl",
+        "tr"
+      ],
+      "answer": "tr"
+    },
+    {
+      "id": 11,
+      "audioScript": "/sn/, /sn/, snake",
+      "options": [
+        "sm",
+        "sn",
+        "sw"
+      ],
+      "answer": "sn"
+    },
+    {
+      "id": 12,
+      "audioScript": "/st/, /st/, stamp",
+      "options": [
+        "sp",
+        "st",
+        "sk"
+      ],
+      "answer": "st"
+    },
+    {
+      "id": 13,
+      "audioScript": "/str/, /str/, street",
+      "options": [
+        "str",
+        "scr",
+        "spl"
+      ],
+      "answer": "str"
+    },
+    {
+      "id": 14,
+      "audioScript": "/sk/, /sk/, desk",
+      "options": [
+        "-st",
+        "-sk",
+        "-sp"
+      ],
+      "answer": "-sk"
+    },
+    {
+      "id": 15,
+      "audioScript": "/br/, /br/, bride",
+      "options": [
+        "dr",
+        "cr",
+        "br"
+      ],
+      "answer": "br"
+    }
+  ],
+  "partB": [
+    {
+      "id": 1,
+      "prompt": "_ _ a c k",
+      "hint": "黑色的",
+      "answer": "bl",
+      "fullWord": "black"
+    },
+    {
+      "id": 2,
+      "prompt": "_ _ a p",
+      "hint": "拍手",
+      "answer": "cl",
+      "fullWord": "clap"
+    },
+    {
+      "id": 3,
+      "prompt": "_ _ a g",
+      "hint": "旗幟",
+      "answer": "fl",
+      "fullWord": "flag"
+    },
+    {
+      "id": 4,
+      "prompt": "_ _ a d",
+      "hint": "高興的",
+      "answer": "gl",
+      "fullWord": "glad",
+      "image": "./images/B2U1305-joy.png"
+    },
+    {
+      "id": 5,
+      "prompt": "_ _ u m",
+      "hint": "李子/梅子",
+      "answer": "pl",
+      "fullWord": "plum"
+    },
+    {
+      "id": 6,
+      "prompt": "_ _ i c k",
+      "hint": "磚塊",
+      "answer": "br",
+      "fullWord": "brick"
+    },
+    {
+      "id": 7,
+      "prompt": "_ _ a c k",
+      "hint": "裂縫/裂痕",
+      "answer": "cr",
+      "fullWord": "crack"
+    },
+    {
+      "id": 8,
+      "prompt": "_ _ u m",
+      "hint": "鼓",
+      "answer": "dr",
+      "fullWord": "drum"
+    },
+    {
+      "id": 9,
+      "prompt": "_ _ u i t",
+      "hint": "水果",
+      "answer": "fr",
+      "fullWord": "fruit",
+      "image": "./images/B1U1804-grape.png"
+    },
+    {
+      "id": 10,
+      "prompt": "_ _ a m",
+      "hint": "公克",
+      "answer": "gr",
+      "fullWord": "gram"
+    },
+    {
+      "id": 11,
+      "prompt": "_ _ a m",
+      "hint": "路面電車",
+      "answer": "tr",
+      "fullWord": "tram"
+    },
+    {
+      "id": 12,
+      "prompt": "_ _ i l e",
+      "hint": "微笑",
+      "answer": "sm",
+      "fullWord": "smile",
+      "image": "./images/B1U18-smile_1.png"
+    },
+    {
+      "id": 13,
+      "prompt": "_ _ i m",
+      "hint": "游泳",
+      "answer": "sw",
+      "fullWord": "swim"
+    },
+    {
+      "id": 14,
+      "prompt": "_ _ a t e",
+      "hint": "溜冰鞋",
+      "answer": "sk",
+      "fullWord": "skate"
+    },
+    {
+      "id": 15,
+      "prompt": "de _ _",
+      "hint": "書桌",
+      "answer": "sk",
+      "fullWord": "desk",
+      "image": "./images/B1U1606-desk.png"
+    }
+  ],
+  "partC": [
+    {
+      "id": 1,
+      "audioScript": "/bloʊ/",
+      "options": [
+        "blow",
+        "glow"
+      ],
+      "answer": "blow"
+    },
+    {
+      "id": 2,
+      "audioScript": "/klaʊn/",
+      "options": [
+        "clown",
+        "crown"
+      ],
+      "answer": "clown"
+    },
+    {
+      "id": 3,
+      "audioScript": "/flæɡ/",
+      "options": [
+        "flag",
+        "frog"
+      ],
+      "answer": "flag"
+    },
+    {
+      "id": 4,
+      "audioScript": "/ɡlæs/",
+      "options": [
+        "glass",
+        "grass"
+      ],
+      "answer": "glass"
+    },
+    {
+      "id": 5,
+      "audioScript": "/slɛd/",
+      "options": [
+        "sled",
+        "Fred"
+      ],
+      "answer": "sled"
+    },
+    {
+      "id": 6,
+      "audioScript": "/brɛd/",
+      "options": [
+        "Fred",
+        "bread"
+      ],
+      "answer": "bread"
+    },
+    {
+      "id": 7,
+      "audioScript": "/ɡloʊb/",
+      "options": [
+        "globe",
+        "crab"
+      ],
+      "answer": "globe"
+    },
+    {
+      "id": 8,
+      "audioScript": "/pleɪn/",
+      "options": [
+        "plane",
+        "crane"
+      ],
+      "answer": "plane"
+    },
+    {
+      "id": 9,
+      "audioScript": "/drɛs/",
+      "options": [
+        "dress",
+        "press"
+      ],
+      "answer": "dress"
+    },
+    {
+      "id": 10,
+      "audioScript": "/træm/",
+      "options": [
+        "tram",
+        "gram"
+      ],
+      "answer": "tram"
+    },
+    {
+      "id": 11,
+      "audioScript": "/snæk/",
+      "options": [
+        "snack",
+        "smack"
+      ],
+      "answer": "snack"
+    },
+    {
+      "id": 12,
+      "audioScript": "/stɑːp/",
+      "options": [
+        "stop",
+        "spot"
+      ],
+      "answer": "stop"
+    },
+    {
+      "id": 13,
+      "audioScript": "/spɪn/",
+      "options": [
+        "spin",
+        "split"
+      ],
+      "answer": "spin"
+    },
+    {
+      "id": 14,
+      "audioScript": "/skriːn/",
+      "options": [
+        "screen",
+        "green"
+      ],
+      "answer": "screen"
+    },
+    {
+      "id": 15,
+      "audioScript": "/dɛsk/",
+      "options": [
+        "desk",
+        "test"
+      ],
+      "answer": "desk"
+    }
+  ]
+}
