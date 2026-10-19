@@ -159,28 +159,32 @@
       "prompt": "_ _ a c k",
       "hint": "黑色的",
       "answer": "bl",
-      "fullWord": "black"
+      "fullWord": "black",
+      "image": "./images/black.png"
     },
     {
       "id": 2,
       "prompt": "_ _ a p",
       "hint": "拍手",
       "answer": "cl",
-      "fullWord": "clap"
+      "fullWord": "clap",
+      "image": "./images/clap.png"
     },
     {
       "id": 3,
       "prompt": "_ _ a g",
       "hint": "旗幟",
       "answer": "fl",
-      "fullWord": "flag"
+      "fullWord": "flag",
+      "image": "./images/flag.png"
     },
     {
       "id": 4,
       "prompt": "_ _ a d",
       "hint": "高興的",
       "answer": "gl",
-      "fullWord": "glad"
+      "fullWord": "glad",
+      "image": "./images/glad.png"
     },
     {
       "id": 5,
@@ -195,21 +199,24 @@
       "prompt": "_ _ i c k",
       "hint": "磚塊",
       "answer": "br",
-      "fullWord": "brick"
+      "fullWord": "brick",
+      "image": "./images/brick.png"
     },
     {
       "id": 7,
       "prompt": "_ _ a c k",
       "hint": "裂縫/裂痕",
       "answer": "cr",
-      "fullWord": "crack"
+      "fullWord": "crack",
+      "image": "./images/crack.png"
     },
     {
       "id": 8,
       "prompt": "_ _ u m",
       "hint": "鼓",
       "answer": "dr",
-      "fullWord": "drum"
+      "fullWord": "drum",
+      "image": "./images/drum.png"
     },
     {
       "id": 9,
@@ -224,14 +231,16 @@
       "prompt": "_ _ a m",
       "hint": "公克",
       "answer": "gr",
-      "fullWord": "gram"
+      "fullWord": "gram",
+      "image": "./images/gram.png"
     },
     {
       "id": 11,
       "prompt": "_ _ a m",
       "hint": "路面電車",
       "answer": "tr",
-      "fullWord": "tram"
+      "fullWord": "tram",
+      "image": "./images/tram.png"
     },
     {
       "id": 12,
@@ -254,7 +263,8 @@
       "prompt": "_ _ a t e",
       "hint": "溜冰鞋",
       "answer": "sk",
-      "fullWord": "skate"
+      "fullWord": "skate",
+      "image": "./images/skate.png"
     },
     {
       "id": 15,
