@@ -1,0 +1,406 @@
+{
+  "themeId": 7,
+  "themeTitle": "Consonant Digraphs",
+  "partA": [
+    {
+      "id": 1,
+      "audioScript": "/ʃ/, /ʃ/, ship",
+      "options": [
+        "sh",
+        "ch",
+        "th"
+      ],
+      "answer": "sh"
+    },
+    {
+      "id": 2,
+      "audioScript": "/tʃ/, /tʃ/, cheese",
+      "options": [
+        "tch",
+        "ch",
+        "sh"
+      ],
+      "answer": "ch"
+    },
+    {
+      "id": 3,
+      "audioScript": "/θ/, /θ/, thick",
+      "options": [
+        "sh",
+        "th",
+        "ch"
+      ],
+      "answer": "th"
+    },
+    {
+      "id": 4,
+      "audioScript": "/w/, /w/, what",
+      "options": [
+        "th",
+        "sh",
+        "wh"
+      ],
+      "answer": "wh"
+    },
+    {
+      "id": 5,
+      "audioScript": "/f/, /f/, phone",
+      "options": [
+        "ch",
+        "th",
+        "ph"
+      ],
+      "answer": "ph"
+    },
+    {
+      "id": 6,
+      "audioScript": "/f/, /f/, laugh",
+      "options": [
+        "gh",
+        "wh",
+        "sh"
+      ],
+      "answer": "gh"
+    },
+    {
+      "id": 7,
+      "audioScript": "/f/, /f/, Phil",
+      "options": [
+        "ph",
+        "gh",
+        "wh"
+      ],
+      "answer": "ph"
+    },
+    {
+      "id": 8,
+      "audioScript": "/ʃ/, /ʃ/, shelf",
+      "options": [
+        "sh",
+        "wh",
+        "th"
+      ],
+      "answer": "sh"
+    },
+    {
+      "id": 9,
+      "audioScript": "/tʃ/, /tʃ/, catch",
+      "options": [
+        "tch",
+        "ph",
+        "sh"
+      ],
+      "answer": "tch"
+    },
+    {
+      "id": 10,
+      "audioScript": "/ð/, /ð/, these",
+      "options": [
+        "th",
+        "wh",
+        "sh"
+      ],
+      "answer": "th"
+    },
+    {
+      "id": 11,
+      "audioScript": "/f/, /f/, cough",
+      "options": [
+        "wh",
+        "gh",
+        "ph"
+      ],
+      "answer": "gh"
+    },
+    {
+      "id": 12,
+      "audioScript": "/ʃ/, /ʃ/, fish",
+      "options": [
+        "ch",
+        "sh",
+        "th"
+      ],
+      "answer": "sh"
+    },
+    {
+      "id": 13,
+      "audioScript": "/θ/, /θ/, teeth",
+      "options": [
+        "th",
+        "ch",
+        "sh"
+      ],
+      "answer": "th"
+    },
+    {
+      "id": 14,
+      "audioScript": "/k/, /k/, school",
+      "options": [
+        "sh",
+        "tch",
+        "ch"
+      ],
+      "answer": "ch"
+    },
+    {
+      "id": 15,
+      "audioScript": "/h/, /h/, whole",
+      "options": [
+        "ph",
+        "wh",
+        "gh"
+      ],
+      "answer": "wh"
+    }
+  ],
+  "partB": [
+    {
+      "id": 1,
+      "prompt": "_ _ i p",
+      "hint": "船",
+      "answer": "sh",
+      "fullWord": "ship"
+    },
+    {
+      "id": 2,
+      "prompt": "fi _ _",
+      "hint": "魚",
+      "answer": "sh",
+      "fullWord": "fish",
+      "image": "./images/B2U803-fish.png"
+    },
+    {
+      "id": 3,
+      "prompt": "_ _ e e s e",
+      "hint": "起司",
+      "answer": "ch",
+      "fullWord": "cheese"
+    },
+    {
+      "id": 4,
+      "prompt": "b e a _ _",
+      "hint": "海灘",
+      "answer": "ch",
+      "fullWord": "beach"
+    },
+    {
+      "id": 5,
+      "prompt": "s t o m a _ _",
+      "hint": "胃/肚子",
+      "answer": "ch",
+      "fullWord": "stomach"
+    },
+    {
+      "id": 6,
+      "prompt": "_ _ i c k",
+      "hint": "厚的",
+      "answer": "th",
+      "fullWord": "thick",
+      "image": "./images/B2U703_thick.png"
+    },
+    {
+      "id": 7,
+      "prompt": "f a _ _ e r",
+      "hint": "爸爸",
+      "answer": "th",
+      "fullWord": "father",
+      "image": "./images/B2U707-father.png"
+    },
+    {
+      "id": 8,
+      "prompt": "_ _ r e e",
+      "hint": "數字 3",
+      "answer": "th",
+      "fullWord": "three"
+    },
+    {
+      "id": 9,
+      "prompt": "_ _ e e l",
+      "hint": "輪子",
+      "answer": "wh",
+      "fullWord": "wheel",
+      "image": "./images/B2U903_wheel.png"
+    },
+    {
+      "id": 10,
+      "prompt": "_ _ i t e",
+      "hint": "白色的",
+      "answer": "wh",
+      "fullWord": "white"
+    },
+    {
+      "id": 11,
+      "prompt": "_ _ o n e",
+      "hint": "電話",
+      "answer": "ph",
+      "fullWord": "phone"
+    },
+    {
+      "id": 12,
+      "prompt": "ele _ _ a n t",
+      "hint": "大象",
+      "answer": "ph",
+      "fullWord": "elephant",
+      "image": "./images/B1U1908-elephant.png"
+    },
+    {
+      "id": 13,
+      "prompt": "lau _ _",
+      "hint": "笑",
+      "answer": "gh",
+      "fullWord": "laugh"
+    },
+    {
+      "id": 14,
+      "prompt": "cou _ _",
+      "hint": "咳嗽",
+      "answer": "gh",
+      "fullWord": "cough",
+      "image": "./images/B2U607-catch.png"
+    },
+    {
+      "id": 15,
+      "prompt": "ca _ _ _",
+      "hint": "捕捉",
+      "answer": "tch",
+      "fullWord": "catch"
+    }
+  ],
+  "partC": [
+    {
+      "id": 1,
+      "audioScript": "/ʃɪp/",
+      "options": [
+        "ship",
+        "chip"
+      ],
+      "answer": "ship"
+    },
+    {
+      "id": 2,
+      "audioScript": "/ʃɑːp/",
+      "options": [
+        "shop",
+        "chop"
+      ],
+      "answer": "shop"
+    },
+    {
+      "id": 3,
+      "audioScript": "/θɪk/",
+      "options": [
+        "thick",
+        "sick"
+      ],
+      "answer": "thick"
+    },
+    {
+      "id": 4,
+      "audioScript": "/θɪn/",
+      "options": [
+        "thin",
+        "chin"
+      ],
+      "answer": "thin"
+    },
+    {
+      "id": 5,
+      "audioScript": "/θriː/",
+      "options": [
+        "three",
+        "tree"
+      ],
+      "answer": "three"
+    },
+    {
+      "id": 6,
+      "audioScript": "/mæθ/",
+      "options": [
+        "math",
+        "match"
+      ],
+      "answer": "math"
+    },
+    {
+      "id": 7,
+      "audioScript": "/pæθ/",
+      "options": [
+        "path",
+        "patch"
+      ],
+      "answer": "path"
+    },
+    {
+      "id": 8,
+      "audioScript": "/wɑːʃ/",
+      "options": [
+        "wash",
+        "watch"
+      ],
+      "answer": "wash"
+    },
+    {
+      "id": 9,
+      "audioScript": "/wɛn/",
+      "options": [
+        "when",
+        "hen"
+      ],
+      "answer": "when"
+    },
+    {
+      "id": 10,
+      "audioScript": "/wiːl/",
+      "options": [
+        "wheel",
+        "feel"
+      ],
+      "answer": "wheel"
+    },
+    {
+      "id": 11,
+      "audioScript": "/fɪl/",
+      "options": [
+        "Phil",
+        "pill"
+      ],
+      "answer": "Phil"
+    },
+    {
+      "id": 12,
+      "audioScript": "/hoʊl/",
+      "options": [
+        "whole",
+        "pole"
+      ],
+      "answer": "whole"
+    },
+    {
+      "id": 13,
+      "audioScript": "/huː/",
+      "options": [
+        "who",
+        "zoo"
+      ],
+      "answer": "who"
+    },
+    {
+      "id": 14,
+      "audioScript": "/ʃiːp/",
+      "options": [
+        "sheep",
+        "cheap"
+      ],
+      "answer": "sheep"
+    },
+    {
+      "id": 15,
+      "audioScript": "/ðiːz/",
+      "options": [
+        "these",
+        "cheese"
+      ],
+      "answer": "these"
+    }
+  ]
+}
