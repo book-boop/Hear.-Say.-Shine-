@@ -631,6 +631,21 @@
 </div>
 
 <script>
+  // ====== LINE 專用：自動強制跳轉至系統預設外部瀏覽器 ======
+  (function handleLineRedirect() {
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isLine = /Line\//i.test(ua);
+
+    // 只要是在 LINE 內打開，自動補上 openExternalBrowser=1 參數強制跳出
+    if (isLine) {
+      const currentUrl = new URL(window.location.href);
+      if (!currentUrl.searchParams.has('openExternalBrowser')) {
+        currentUrl.searchParams.set('openExternalBrowser', '1');
+        window.location.replace(currentUrl.toString());
+      }
+    }
+  })();
+  // =========================================================
   const themeList = [
     { 
       id: 1, file: "theme01.json", name: "Alphabets & Sounds", fullTheme: "Alphabets and Letter Sounds", 
@@ -786,35 +801,68 @@
   document.addEventListener('click', unlockAudioForMobile, { once: true });
   document.addEventListener('touchstart', unlockAudioForMobile, { once: true });
 
-  function playAccurateSpeech(text) {
-    if (!('speechSynthesis' in window)) {
-      alert('您的瀏覽器不支援語音播放，建議使用 Chrome 或 Safari 開啟。');
-      return;
-    }
+  // ====== 發音控制核心：微信使用方法 A (線上音檔)，其餘使用原生 TTS ======
+  let fallbackAudio = null;
 
+  // 方法 A：線上標準美式發音引擎 (微信內建瀏覽器專用，100% 穩定發聲)
+  function playOnlineTTS(word) {
+    try {
+      if (fallbackAudio) {
+        fallbackAudio.pause();
+        fallbackAudio.currentTime = 0;
+      }
+      // 使用穩定的美式字典發音串流 (type=2 代表美式發音)
+      const audioUrl = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&type=2`;
+      fallbackAudio = new Audio(audioUrl);
+      fallbackAudio.play().catch(err => {
+        console.warn("線上發音播放被瀏覽器阻擋:", err);
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  function playAccurateSpeech(text) {
     const wordToSpeak = cleanTextForSpeech(text);
     if (!wordToSpeak) return;
 
-    // 偵測是否為 Android 裝置
-    const isAndroid = /Android/i.test(navigator.userAgent);
+    const ua = navigator.userAgent || "";
+    const isWeChat = /MicroMessenger/i.test(ua);
+    const isAndroid = /Android/i.test(ua);
 
-    // 只有當系統真的正在發音時才 cancel，避免 Android 誤殺新語音
+    // 1. 若在「微信環境」中，直接執行【方法 A】透過 Audio 標籤播放，不跳轉且必定有聲音
+    if (isWeChat) {
+      playOnlineTTS(wordToSpeak);
+      return;
+    }
+
+    // 2. 若瀏覽器完全不支援 Web Speech API，也自動降級使用【方法 A】
+    if (!('speechSynthesis' in window)) {
+      playOnlineTTS(wordToSpeak);
+      return;
+    }
+
+    // 3. 一般外部瀏覽器環境 (Chrome / Safari)：使用原生高品質語音合成
     if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
       window.speechSynthesis.cancel();
     }
 
-    // Android 在 cancel 後需要約 50ms 緩衝時間才能再次 speak
     setTimeout(() => {
+      const voices = window.speechSynthesis.getVoices();
+
+      // 部分 Android 設備若完全沒有安裝 TTS 語音包，自動改用線上發音備援
+      if (isAndroid && voices.length === 0) {
+        playOnlineTTS(wordToSpeak);
+        return;
+      }
+
       const utterance = new SpeechSynthesisUtterance(wordToSpeak);
       utterance.lang = 'en-US';
       utterance.rate = 0.85;
       utterance.pitch = 1.0;
-      utterance.volume = 1.0;
 
-      // 在非 Android 裝置（iOS / 電腦）才手動挑選特定高品質聲音
-      // Android 強制指定 utterance.voice 容易因 en_US 底線格式問題導致無聲，交由系統預設最穩！
+      // iOS 與桌面版手動優先挑選自然美式語音
       if (!isAndroid) {
-        const voices = window.speechSynthesis.getVoices();
         const usVoice = voices.find(v => 
           (v.lang === 'en-US' || v.lang === 'en_US') && 
           (v.name.includes('Natural') || v.name.includes('Google US') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Ava'))
@@ -823,9 +871,15 @@
         if (usVoice) utterance.voice = usVoice;
       }
 
+      // 若發音合成過程中觸發錯誤，自動無縫改用線上音檔備援
+      utterance.onerror = () => {
+        playOnlineTTS(wordToSpeak);
+      };
+
       window.speechSynthesis.speak(utterance);
     }, isAndroid ? 60 : 0);
   }
+  // =========================================================================
 
   function renderCurrentQuestion() {
     if (!currentThemeData) return;
