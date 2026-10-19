@@ -159,7 +159,8 @@
       "prompt": "c _ _ n",
       "hint": "硬幣",
       "answer": "oi",
-      "fullWord": "coin"
+      "fullWord": "coin",
+      "image": "./images/coin.png"
     },
     {
       "id": 2,
@@ -174,14 +175,16 @@
       "prompt": "m _ _ s e",
       "hint": "老鼠",
       "answer": "ou",
-      "fullWord": "mouse"
+      "fullWord": "mouse",
+      "image": "./images/mouse.png"
     },
     {
       "id": 4,
       "prompt": "cl _ _ n",
       "hint": "小丑",
       "answer": "ow",
-      "fullWord": "clown"
+      "fullWord": "clown",
+      "image": "./images/clown.png"
     },
     {
       "id": 5,
@@ -204,14 +207,16 @@
       "prompt": "gr _ _ p",
       "hint": "群組/團體",
       "answer": "ou",
-      "fullWord": "group"
+      "fullWord": "group",
+      "image": "./images/group.png"
     },
     {
       "id": 8,
       "prompt": "P _ _ l",
       "hint": "保羅，人名",
       "answer": "au",
-      "fullWord": "Paul"
+      "fullWord": "paul",
+      "image": "./images/paul.png"
     },
     {
       "id": 9,
@@ -242,7 +247,8 @@
       "prompt": "f _ _ _",
       "hint": "滿的",
       "answer": "ull",
-      "fullWord": "full"
+     "fullWord": "full",
+      "image": "./images/full.png"
     },
     {
       "id": 13,
@@ -265,7 +271,8 @@
       "prompt": "str _ _",
       "hint": "吸管",
       "answer": "aw",
-      "fullWord": "straw"
+      "fullWord": "straw",
+      "image": "./images/straw.png"
     }
   ],
   "partC": [
