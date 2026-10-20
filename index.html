@@ -930,6 +930,7 @@
 
     if (currentPart === 'partA') {
       const isU1 = currentThemeMeta && currentThemeMeta.id === 1;
+      // 只有題目加上底線
       const displayQuestion = (isU1 && q.question) 
         ? formatU1Underline(q.question, q.question) 
         : (q.question || '請聽發音選出答案');
@@ -940,13 +941,13 @@
           ${spokenText ? `<button class="btn-audio" title="點擊發音" onclick="playAccurateSpeech('${spokenText}')">🔊</button>` : ''}
         </div>
         <div class="card-options">
-          ${q.options.map(opt => {
-            const displayOpt = isU1 ? formatU1Underline(opt, q.question) : opt;
-            return `<button class="option-btn" data-raw="${opt}" onclick="handleChoice(this, '${opt}', '${q.answer}')">${displayOpt}</button>`;
-          }).join('')}
+          ${q.options.map(opt => `
+            <button class="option-btn" data-raw="${opt}" onclick="handleChoice(this, '${opt}', '${q.answer}')">${opt}</button>
+          `).join('')}
         </div>
       `;
-    } else if (currentPart === 'partB') {
+    }
+    else if (currentPart === 'partB') {
       // 支援動態載入 JSON 裡的圖片，若無則預設抓 ./images/單字.png
       const imageUrl = q.image || `./images/${q.fullWord}.png`;
       cardContent += `
