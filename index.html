@@ -756,10 +756,30 @@
     }
   }
 
+  // 隨機洗牌函式 (Fisher-Yates Shuffle)
+  function shuffleArray(array) {
+    if (!Array.isArray(array)) return [];
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  // 開始或重新開始整個單元的闖關 (Part A -> Part B -> Part C，內部題目隨機)
   function startFullQuiz() {
     partScores = { partA: 0, partB: 0, partC: 0 };
     currentPart = 'partA';
     currentIndex = 0;
+
+    // 分別將 Part A、Part B、Part C 的題目順序隨機打亂
+    if (currentThemeData) {
+      if (currentThemeData.partA) currentThemeData.partA = shuffleArray(currentThemeData.partA);
+      if (currentThemeData.partB) currentThemeData.partB = shuffleArray(currentThemeData.partB);
+      if (currentThemeData.partC) currentThemeData.partC = shuffleArray(currentThemeData.partC);
+    }
+
     updateTabIndicator('partA');
     renderCurrentQuestion();
   }
