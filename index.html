@@ -38,7 +38,6 @@
       padding: 20px 0;
     }
 
-    /* 外框容器：移除 min-height: 90vh，消除答題頁底部留白 */
     .app-container {
       width: 100%;
       max-width: 860px;
@@ -70,7 +69,7 @@
     }
 
     /* =========================================
-       1. 扉頁 (首頁)：放大滿版 + START 緊貼圖片下方
+       1. 扉頁 (首頁)
        ========================================= */
     #screen-cover {
       justify-content: center;
@@ -334,11 +333,11 @@
       border: 1px solid #CBD5E0; 
       font-size: 1rem; 
       padding: 6px 16px; 
-      cursor: pointer; 
       border-radius: 20px; 
       color: var(--text-muted); 
       font-weight: 600; 
       transition: 0.2s;
+      cursor: default;
     }
     .tab-btn.active { 
       background: var(--primary-color); 
@@ -414,7 +413,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Part B 題目提示圖片顯示區 */
     .card-hint-image {
       width: 130px;
       height: 130px;
@@ -448,10 +446,6 @@
       text-underline-offset: 5px;
       color: #2B6CB0;
       font-weight: 800;
-    }
-    .option-btn.correct .phonics-underline,
-    .option-btn.wrong .phonics-underline {
-      color: #FFFFFF;
     }
 
     .card-options {
@@ -619,10 +613,11 @@
       <div class="scope-detail" id="scopeDetail">題目範圍載入中...</div>
     </div>
 
+    <!-- 進度指示標籤 (自動隨關卡推進) -->
     <div class="part-tabs">
-      <button class="tab-btn active" onclick="switchPart('partA', this)">Part A</button>
-      <button class="tab-btn" onclick="switchPart('partB', this)">Part B</button>
-      <button class="tab-btn" onclick="switchPart('partC', this)">Part C</button>
+      <button id="tab-partA" class="tab-btn active">Part A</button>
+      <button id="tab-partB" class="tab-btn">Part B</button>
+      <button id="tab-partC" class="tab-btn">Part C</button>
     </div>
 
     <div class="quiz-body" id="questionsContainer"></div>
@@ -636,7 +631,6 @@
     const ua = navigator.userAgent || navigator.vendor || window.opera;
     const isLine = /Line\//i.test(ua);
 
-    // 只要是在 LINE 內打開，自動補上 openExternalBrowser=1 參數強制跳出
     if (isLine) {
       const currentUrl = new URL(window.location.href);
       if (!currentUrl.searchParams.has('openExternalBrowser')) {
@@ -645,7 +639,20 @@
       }
     }
   })();
-  // =========================================================
+
+  // ====== 手機首次點擊自動解鎖語音引擎 ======
+  let ttsUnlocked = false;
+  function unlockAudioForMobile() {
+    if (ttsUnlocked || !('speechSynthesis' in window)) return;
+    const silentUtterance = new SpeechSynthesisUtterance('');
+    silentUtterance.volume = 0;
+    window.speechSynthesis.speak(silentUtterance);
+    ttsUnlocked = true;
+  }
+  document.addEventListener('click', unlockAudioForMobile, { once: true });
+  document.addEventListener('touchstart', unlockAudioForMobile, { once: true });
+
+  // ====== 題庫設定清單 ======
   const themeList = [
     { 
       id: 1, file: "theme01.json", name: "Alphabets & Sounds", fullTheme: "Alphabets and Letter Sounds", 
@@ -698,7 +705,7 @@
   let currentThemeData = null;
   let currentPart = 'partA';
   let currentIndex = 0;
-  let currentScore = 0;
+  let partScores = { partA: 0, partB: 0, partC: 0 };
 
   function navigateTo(screenId) {
     document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
@@ -715,6 +722,12 @@
     `).join('');
   }
 
+  function updateTabIndicator(partKey) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const activeTab = document.getElementById(`tab-${partKey}`);
+    if (activeTab) activeTab.classList.add('active');
+  }
+
   async function loadAndOpenTheme(themeId) {
     currentThemeMeta = themeList.find(t => t.id === themeId);
     document.getElementById('currentThemeTag').innerText = `主題 ${currentThemeMeta.id}`;
@@ -729,19 +742,18 @@
       const response = await fetch(`./${currentThemeMeta.file}`);
       if (!response.ok) throw new Error('檔案讀取失敗');
       currentThemeData = await response.json();
-      switchPart('partA', document.querySelector('.tab-btn'));
+      startFullQuiz();
     } catch (err) {
       container.innerHTML = `<div style="color:var(--danger)">載入 ${currentThemeMeta.file} 失敗，請確認檔案是否存在於根目錄。</div>`;
       console.error(err);
     }
   }
 
-  function switchPart(partKey, btn) {
-    currentPart = partKey;
+  function startFullQuiz() {
+    partScores = { partA: 0, partB: 0, partC: 0 };
+    currentPart = 'partA';
     currentIndex = 0;
-    currentScore = 0;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    if(btn) btn.classList.add('active');
+    updateTabIndicator('partA');
     renderCurrentQuestion();
   }
 
@@ -786,32 +798,15 @@
     return "";
   }
 
-  // 專門用來解鎖手機語音權限的標記
-  let ttsUnlocked = false;
-
-  function unlockAudioForMobile() {
-    if (ttsUnlocked || !('speechSynthesis' in window)) return;
-    const silentUtterance = new SpeechSynthesisUtterance('');
-    silentUtterance.volume = 0;
-    window.speechSynthesis.speak(silentUtterance);
-    ttsUnlocked = true;
-  }
-
-  // 在使用者點擊 START 或任何按鈕時自動解鎖語音引擎
-  document.addEventListener('click', unlockAudioForMobile, { once: true });
-  document.addEventListener('touchstart', unlockAudioForMobile, { once: true });
-
   // ====== 發音控制核心：微信使用方法 A (線上音檔)，其餘使用原生 TTS ======
   let fallbackAudio = null;
 
-  // 方法 A：線上標準美式發音引擎 (微信內建瀏覽器專用，100% 穩定發聲)
   function playOnlineTTS(word) {
     try {
       if (fallbackAudio) {
         fallbackAudio.pause();
         fallbackAudio.currentTime = 0;
       }
-      // 使用穩定的美式字典發音串流 (type=2 代表美式發音)
       const audioUrl = `https://dict.youdao.com/dictvoice?audio=${encodeURIComponent(word)}&type=2`;
       fallbackAudio = new Audio(audioUrl);
       fallbackAudio.play().catch(err => {
@@ -830,27 +825,17 @@
     const isWeChat = /MicroMessenger/i.test(ua);
     const isAndroid = /Android/i.test(ua);
 
-    // 1. 若在「微信環境」中，直接執行【方法 A】透過 Audio 標籤播放，不跳轉且必定有聲音
-    if (isWeChat) {
+    if (isWeChat || !('speechSynthesis' in window)) {
       playOnlineTTS(wordToSpeak);
       return;
     }
 
-    // 2. 若瀏覽器完全不支援 Web Speech API，也自動降級使用【方法 A】
-    if (!('speechSynthesis' in window)) {
-      playOnlineTTS(wordToSpeak);
-      return;
-    }
-
-    // 3. 一般外部瀏覽器環境 (Chrome / Safari)：使用原生高品質語音合成
     if (window.speechSynthesis.speaking || window.speechSynthesis.pending) {
       window.speechSynthesis.cancel();
     }
 
     setTimeout(() => {
       const voices = window.speechSynthesis.getVoices();
-
-      // 部分 Android 設備若完全沒有安裝 TTS 語音包，自動改用線上發音備援
       if (isAndroid && voices.length === 0) {
         playOnlineTTS(wordToSpeak);
         return;
@@ -860,8 +845,8 @@
       utterance.lang = 'en-US';
       utterance.rate = 0.85;
       utterance.pitch = 1.0;
+      utterance.volume = 1.0;
 
-      // iOS 與桌面版手動優先挑選自然美式語音
       if (!isAndroid) {
         const usVoice = voices.find(v => 
           (v.lang === 'en-US' || v.lang === 'en_US') && 
@@ -871,7 +856,6 @@
         if (usVoice) utterance.voice = usVoice;
       }
 
-      // 若發音合成過程中觸發錯誤，自動無縫改用線上音檔備援
       utterance.onerror = () => {
         playOnlineTTS(wordToSpeak);
       };
@@ -879,32 +863,78 @@
       window.speechSynthesis.speak(utterance);
     }, isAndroid ? 60 : 0);
   }
-  // =========================================================================
 
+  // ====== 渲染最終結算畫面 (分別顯示 Part A ~ Part C 分數) ======
+  function renderFinalSummary() {
+    const container = document.getElementById('questionsContainer');
+    const lenA = (currentThemeData.partA || []).length;
+    const lenB = (currentThemeData.partB || []).length;
+    const lenC = (currentThemeData.partC || []).length;
+
+    const totalScore = partScores.partA + partScores.partB + partScores.partC;
+    const totalQuestions = lenA + lenB + lenC;
+    const percentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0;
+
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.add('active'));
+
+    container.innerHTML = `
+      <div class="single-card" style="padding: 32px 24px;">
+        <h2 style="color: #1A365D; margin-bottom: 6px; font-size: 1.7rem;">🎉 單元闖關完成！</h2>
+        <p style="color: var(--text-muted); margin-bottom: 22px; font-weight: 600;">Unit ${currentThemeMeta.id} - ${currentThemeMeta.fullTheme}</p>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; width: 100%; max-width: 480px; margin-bottom: 24px;">
+          <div style="background: #EBF8FF; border: 2px solid #BEE3F8; border-radius: 14px; padding: 14px 8px;">
+            <div style="font-size: 0.9rem; font-weight: 700; color: #2B6CB0; margin-bottom: 6px;">Part A</div>
+            <div style="font-size: 1.55rem; font-weight: 800; color: #1A365D;">${partScores.partA} <span style="font-size: 0.95rem; font-weight: 600; color: #718096;">/ ${lenA}</span></div>
+          </div>
+          <div style="background: #FFF5F5; border: 2px solid #FED7D7; border-radius: 14px; padding: 14px 8px;">
+            <div style="font-size: 0.9rem; font-weight: 700; color: #C53030; margin-bottom: 6px;">Part B</div>
+            <div style="font-size: 1.55rem; font-weight: 800; color: #1A365D;">${partScores.partB} <span style="font-size: 0.95rem; font-weight: 600; color: #718096;">/ ${lenB}</span></div>
+          </div>
+          <div style="background: #F0FFF4; border: 2px solid #C6F6D5; border-radius: 14px; padding: 14px 8px;">
+            <div style="font-size: 0.9rem; font-weight: 700; color: #276749; margin-bottom: 6px;">Part C</div>
+            <div style="font-size: 1.55rem; font-weight: 800; color: #1A365D;">${partScores.partC} <span style="font-size: 0.95rem; font-weight: 600; color: #718096;">/ ${lenC}</span></div>
+          </div>
+        </div>
+
+        <div style="background: #F8FAFC; border: 1.5px solid #E2E8F0; border-radius: 14px; padding: 16px 24px; width: 100%; max-width: 480px; margin-bottom: 26px;">
+          <div style="font-size: 0.95rem; color: var(--text-muted); font-weight: bold;">總得分</div>
+          <div style="font-size: 2.6rem; font-weight: 800; color: var(--primary-color); margin: 4px 0;">${totalScore} <span style="font-size: 1.3rem; color: #718096;">/ ${totalQuestions}</span></div>
+          <div style="font-size: 1rem; color: #4A5568; font-weight: 600;">總正確率：${percentage}%</div>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;">
+          <button class="btn-start" style="padding: 12px 26px; font-size: 1.05rem;" onclick="startFullQuiz()">🔄 重新挑戰本單元</button>
+          <button class="btn-start" style="padding: 12px 26px; font-size: 1.05rem;" onclick="navigateTo('screen-menu')">📚 選擇其他單元</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // ====== 渲染單題與自動過關邏輯 ======
   function renderCurrentQuestion() {
     if (!currentThemeData) return;
     const container = document.getElementById('questionsContainer');
     const questions = currentThemeData[currentPart] || [];
 
-    if (questions.length > 0 && currentIndex >= questions.length) {
-      const percentage = Math.round((currentScore / questions.length) * 100);
-      container.innerHTML = `
-        <div class="single-card" style="padding:40px 20px;">
-          <h2>測驗完成！</h2>
-          <div style="font-size:3rem; font-weight:bold; color:var(--primary-color); margin:15px 0;">${currentScore} / ${questions.length}</div>
-          <p style="color:var(--text-muted); margin-bottom:25px;">正確率：${percentage}%</p>
-          <div style="display:flex; gap:12px;">
-            <button class="btn-start" style="padding:10px 24px; font-size:1rem;" onclick="switchPart('${currentPart}', document.querySelector('.tab-btn.active'))">重新練習</button>
-            <button class="btn-start" style="padding:10px 24px; font-size:1rem;" onclick="navigateTo('screen-menu')">選擇其他單元</button>
-          </div>
-        </div>
-      `;
-      return;
-    }
-
-    if (questions.length === 0) {
-      container.innerHTML = `<p style="color:#A0AEC0;">此大題暫無題目</p>`;
-      return;
+    // 當目前 Part 的題目已經全部答完時，自動進入下一個 Part！
+    if (currentIndex >= questions.length) {
+      if (currentPart === 'partA') {
+        currentPart = 'partB';
+        currentIndex = 0;
+        updateTabIndicator('partB');
+        renderCurrentQuestion();
+        return;
+      } else if (currentPart === 'partB') {
+        currentPart = 'partC';
+        currentIndex = 0;
+        updateTabIndicator('partC');
+        renderCurrentQuestion();
+        return;
+      } else if (currentPart === 'partC') {
+        renderFinalSummary();
+        return;
+      }
     }
 
     const q = questions[currentIndex];
@@ -916,9 +946,11 @@
       ? (currentThemeMeta.instructions[currentPart] || "請依題意作答。") 
       : "請依題意作答。";
 
+    const partLabel = currentPart === 'partA' ? 'Part A' : (currentPart === 'partB' ? 'Part B' : 'Part C');
+
     let cardContent = `
       <div class="progress-bar-container">
-        <span>Question ${currentIndex + 1} / ${total}</span>
+        <span>${partLabel} — Question ${currentIndex + 1} / ${total}</span>
         <div class="progress-track"><div class="progress-fill" style="width:${progressPercent}%"></div></div>
       </div>
       <div class="single-card">
@@ -930,7 +962,7 @@
 
     if (currentPart === 'partA') {
       const isU1 = currentThemeMeta && currentThemeMeta.id === 1;
-      // 只有題目加上底線
+      // 只有題目加上底線，選項不加底線
       const displayQuestion = (isU1 && q.question) 
         ? formatU1Underline(q.question, q.question) 
         : (q.question || '請聽發音選出答案');
@@ -946,9 +978,7 @@
           `).join('')}
         </div>
       `;
-    }
-    else if (currentPart === 'partB') {
-      // 支援動態載入 JSON 裡的圖片，若無則預設抓 ./images/單字.png
+    } else if (currentPart === 'partB') {
       const imageUrl = q.image || `./images/${q.fullWord}.png`;
       cardContent += `
         <img src="${imageUrl}" alt="${q.fullWord || 'hint'}" class="card-hint-image" onerror="this.style.display='none'">
@@ -998,7 +1028,7 @@
 
     if (selected === correct) {
       btn.classList.add('correct');
-      currentScore++;
+      partScores[currentPart]++;
     } else {
       btn.classList.add('wrong');
       parent.querySelectorAll('.option-btn').forEach(b => {
@@ -1027,7 +1057,7 @@
     if (val === expected) {
       feedback.style.color = 'var(--success)';
       feedback.innerText = '✓ 答對了！';
-      currentScore++;
+      partScores[currentPart]++;
     } else {
       feedback.style.color = 'var(--danger)';
       feedback.innerText = `✗ 正確答案是: ${correct}`;
