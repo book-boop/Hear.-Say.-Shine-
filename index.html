@@ -159,10 +159,8 @@
     }
 
     .go-img {
-      max-width: 215px;
-      max-height: 150px;
-      width: auto;
-      height: auto;
+      width: 210px;
+      height: 145px;
       object-fit: contain;
       border-radius: 10px;
       filter: drop-shadow(0 10px 20px rgba(30, 64, 110, 0.2));
@@ -170,13 +168,21 @@
       cursor: pointer;
     }
 
-    .go-row .go-img:nth-child(1) { transform: rotate(-3deg); }
-    .go-row .go-img:nth-child(2) { transform: rotate(3deg); }
+    .go-row .go-img:nth-child(1) { 
+      transform: rotate(-3deg); 
+    }
+    /* 針對右邊偏小的 Phonics GO 2 補償放大 1.18 倍，讓視覺大小完全一致 */
+    .go-row .go-img:nth-child(2) { 
+      transform: rotate(3deg) scale(1.18); 
+    }
 
     .go-img:hover {
-      transform: translateY(-10px) scale(1.06) rotate(0deg) !important;
+      transform: translateY(-10px) scale(1.12) rotate(0deg) !important;
       filter: drop-shadow(0 16px 26px rgba(30, 64, 110, 0.28));
       z-index: 5;
+    }
+    .go-row .go-img:nth-child(2):hover {
+      transform: translateY(-10px) scale(1.25) rotate(0deg) !important;
     }
 
     .btn-start {
@@ -553,7 +559,7 @@
       .books-display { gap: 16px; margin-bottom: 24px; }
       .books-row { gap: 12px; }
       .fun-book { width: 95px; height: 135px; }
-      .go-img { max-width: 125px; max-height: 90px; }
+      .go-img { max-width: 130px; height: 90px; }
       .btn-start { padding: 12px 50px; font-size: 1.25rem; }
       .theme-grid { gap: 16px 12px; }
       .circle-theme-btn { width: 92px; height: 92px; font-size: 0.75rem; }
