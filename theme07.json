@@ -159,7 +159,8 @@
       "prompt": "_ _ i p",
       "hint": "船",
       "answer": "sh",
-      "fullWord": "ship"
+      "fullWord": "ship",
+      "image": "./images/ship.png"
     },
     {
       "id": 2,
@@ -173,15 +174,16 @@
       "id": 3,
       "prompt": "_ _ e e s e",
       "hint": "起司",
-      "answer": "ch",
-      "fullWord": "cheese"
+      "fullWord": "cheese",
+      "image": "./images/cheese.png"
     },
     {
       "id": 4,
       "prompt": "b e a _ _",
       "hint": "海灘",
       "answer": "ch",
-      "fullWord": "beach"
+      "fullWord": "beach",
+      "image": "./images/beach.png"
     },
     {
       "id": 5,
@@ -211,7 +213,8 @@
       "prompt": "_ _ r e e",
       "hint": "數字 3",
       "answer": "th",
-      "fullWord": "three"
+      "fullWord": "three",
+      "image": "./images/three.png"
     },
     {
       "id": 9,
@@ -226,14 +229,16 @@
       "prompt": "_ _ i t e",
       "hint": "白色的",
       "answer": "wh",
-      "fullWord": "white"
+      "fullWord": "white",
+      "image": "./images/white.png"
     },
     {
       "id": 11,
       "prompt": "_ _ o n e",
       "hint": "電話",
       "answer": "ph",
-      "fullWord": "phone"
+      "fullWord": "phone",
+      "image": "./images/phone.png"
     },
     {
       "id": 12,
@@ -248,7 +253,8 @@
       "prompt": "lau _ _",
       "hint": "笑",
       "answer": "gh",
-      "fullWord": "laugh"
+      "fullWord": "laugh",
+      "image": "./images/laugh.png"
     },
     {
       "id": 14,
@@ -256,14 +262,15 @@
       "hint": "咳嗽",
       "answer": "gh",
       "fullWord": "cough",
-      "image": "./images/B2U607-catch.png"
+      "image": "./images/B2U607-cough.png"
     },
     {
       "id": 15,
       "prompt": "ca _ _ _",
       "hint": "捕捉",
       "answer": "tch",
-      "fullWord": "catch"
+      "fullWord": "catch",
+      "image": "./images/B2U607-catch.png"
     }
   ],
   "partC": [
